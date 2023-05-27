@@ -56,7 +56,7 @@ class CivitasDataTable extends DataTable
                         'responsivePriority' => 1,
                         'targets' => 1,
                     ])
-                    ->orderBy(1)
+                    ->orderBy(1, 'asc')
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),

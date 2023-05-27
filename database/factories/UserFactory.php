@@ -43,11 +43,11 @@ class UserFactory extends Factory
                     'nip' => fake('id_ID')->randomNumber(),
                     'nuptk' => fake('id_ID')->randomNumber(),
                     'nik' => fake('id_ID')->randomNumber(),
-                    'jk' => 'Laki-laki',
+                    'jk' => 'l',
                     'tempat_lahir' => 'Sumedang',
                     'tanggal_lahir' => fake('id_ID')->date(),
                     'no_handphone' => fake('id_ID')->phoneNumber(),
-                    'status' => 'Non PNS',
+                    'status' => 'nonpns',
                     'alamat' => fake('id_ID')->address(),
                 ]);
             } elseif ($user->id == 2) {
@@ -56,11 +56,11 @@ class UserFactory extends Factory
                     'nip' => fake('id_ID')->randomNumber(),
                     'nuptk' => fake('id_ID')->randomNumber(),
                     'nik' => fake('id_ID')->randomNumber(),
-                    'jk' => 'Laki-laki',
+                    'jk' => 'l',
                     'tempat_lahir' => 'Sumedang',
                     'tanggal_lahir' => fake('id_ID')->date(),
                     'no_handphone' => fake('id_ID')->phoneNumber(),
-                    'status' => 'Non PNS',
+                    'status' => 'nonpns',
                     'alamat' => fake('id_ID')->address(),
                 ]);
             } elseif ($user->id == 3) {
@@ -69,11 +69,11 @@ class UserFactory extends Factory
                     'nip' => fake('id_ID')->randomNumber(),
                     'nuptk' => fake('id_ID')->randomNumber(),
                     'nik' => fake('id_ID')->randomNumber(),
-                    'jk' => 'Laki-laki',
+                    'jk' => 'l',
                     'tempat_lahir' => 'Sumedang',
                     'tanggal_lahir' => fake('id_ID')->date(),
                     'no_handphone' => fake('id_ID')->phoneNumber(),
-                    'status' => 'PNS',
+                    'status' => 'pns',
                     'alamat' => fake('id_ID')->address(),
                 ]);
             } elseif ($user->id == 4) {
@@ -82,11 +82,11 @@ class UserFactory extends Factory
                     'nip' => fake('id_ID')->randomNumber(),
                     'nuptk' => fake('id_ID')->randomNumber(),
                     'nik' => fake('id_ID')->randomNumber(),
-                    'jk' => 'Perempuan',
+                    'jk' => 'p',
                     'tempat_lahir' => 'Sumedang',
                     'tanggal_lahir' => fake('id_ID')->date(),
                     'no_handphone' => fake('id_ID')->phoneNumber(),
-                    'status' => 'Non PNS',
+                    'status' => 'nonpns',
                     'alamat' => fake('id_ID')->address(),
                 ]);
             } elseif ($user->id == 5) {
@@ -98,6 +98,25 @@ class UserFactory extends Factory
                 ]);
             } elseif ($user->id == 6) {
                 $user->assignRole('alumni');
+                $user->alumni_detail()->create([
+                    'nis' => fake('id_ID')->randomNumber(8),
+                    'nisn' => fake('id_ID')->randomNumber(8),
+                    'jk' => 'p',
+                    'alamat' => fake('id_ID')->address(),
+                    'status' => 'tidakbekerja',
+                ]);
+                $user->alumni_family()->create([
+                    'ayah' => fake('id_ID')->name(),
+                    'pekerjaan_ayah' => fake('id_ID')->jobTitle(),
+                    'ibu' => fake('id_ID')->name(),
+                    'pekerjaan_ibu' => fake('id_ID')->jobTitle(),
+                ]);
+                $user->alumni_academic()->create([
+                    'jurusan' => 'tkj',
+                    'rombel' => '1',
+                    'tahun_masuk' => '2020/2021',
+                    'tahun_lulus' => '2022/2023',
+                ]);
             } else {
                 $user->assignRole('pengunjung');
             }

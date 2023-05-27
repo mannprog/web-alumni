@@ -40,8 +40,8 @@
                                 <label for="jk">Jenis Kelamin<span class="text-danger">*</span></label>
                                 <select name="jk" id="edit_jk" class="form-control">
                                     <option>---Pilih Jenis Kelamin---</option>
-                                    <option value="Laki-laki">Laki-laki</option>
-                                    <option value="Perempuan">Perempuan</option>
+                                    <option value="l">Laki-laki</option>
+                                    <option value="p">Perempuan</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -58,8 +58,8 @@
                                 <label for="status">Status Kepegawaian<span class="text-danger">*</span></label>
                                 <select name="status" id="edit_status" class="form-control">
                                     <option>---Pilih Status Kepegawaian---</option>
-                                    <option value="PNS">PNS</option>
-                                    <option value="Non PNS">Non PNS</option>
+                                    <option value="pns">PNS</option>
+                                    <option value="nonpns">Non PNS</option>
                                 </select>
                             </div>
                         </div>

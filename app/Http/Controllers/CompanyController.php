@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use InvalidArgumentException;
 use Illuminate\Support\Facades\DB;
 use App\DataTables\CompanyDataTable;
-use App\Http\Requests\CompanyRequest;
-// use App\Http\Requests\CompanyRequest;
 use App\Models\CompanyDetail;
 
 class CompanyController extends Controller
@@ -19,14 +16,6 @@ class CompanyController extends Controller
     public function index(CompanyDataTable $dataTable)
     {
         return $dataTable->render('admin.pages.company.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**

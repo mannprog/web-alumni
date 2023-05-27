@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CompanyDataTable extends DataTable
+class AlumniDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,7 +24,7 @@ class CompanyDataTable extends DataTable
         return (new EloquentDataTable($query))
         ->addIndexColumn()
         ->addColumn('action', function ($row) {
-            return view('admin.pages.company.component.action', compact('row'))->render();
+            return view('admin.pages.alumni.component.action', compact('row'))->render();
         })
         ->rawColumns(['action']);
     }
@@ -35,8 +35,8 @@ class CompanyDataTable extends DataTable
     public function query(User $model): QueryBuilder
     {
         return $model->newQuery()
-        ->role('perusahaan')
-        ->with(['company_detail', 'roles']);
+        ->role('alumni')
+        ->with(['alumni_detail', 'alumni_family', 'alumni_academic', 'roles']);
     }
 
     /**
@@ -45,7 +45,7 @@ class CompanyDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('company-table')
+                    ->setTableId('alumni-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -79,13 +79,21 @@ class CompanyDataTable extends DataTable
                 ->addClass('text-center'),
             Column::make('name')
                 ->addClass("text-sm font-weight-normal text-wrap")
-                ->title('Nama Perusahaan'),
-            Column::make('company_detail.jenis_perusahaan')
+                ->title('Nama Lengkap'),
+            Column::make('alumni_detail.nis')
                 ->addClass("text-sm font-weight-normal text-wrap")
-                ->title('Jenis Perusahaan'),
-            Column::make('company_detail.alamat_perusahaan')
+                ->title('NIS'),
+            Column::make('alumni_detail.nisn')
                 ->addClass("text-sm font-weight-normal text-wrap")
-                ->title('Alamat Perusahaan'),
+                ->title('NISN'),
+            Column::make('alumni_academic.tahun_masuk')
+                ->addClass("text-sm font-weight-normal text-wrap")
+                ->orderable(false)
+                ->title('Tahun Masuk'),
+            Column::make('alumni_academic.tahun_lulus')
+                ->addClass("text-sm font-weight-normal text-wrap")
+                ->orderable(false)
+                ->title('Tahun Lulus'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -99,6 +107,6 @@ class CompanyDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Company_' . date('YmdHis');
+        return 'Alumni_' . date('YmdHis');
     }
 }

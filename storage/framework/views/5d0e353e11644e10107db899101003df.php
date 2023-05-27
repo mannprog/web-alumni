@@ -64,7 +64,8 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">Alumni</a>
+                <a class="collapse-item <?php echo e(Route::is('alumni.index') ? 'active' : ''); ?>"
+                    href="<?php echo e(route('alumni.index')); ?>">Alumni</a>
                 <a class="collapse-item <?php echo e(Route::is('gtk.index') ? 'active' : ''); ?>"
                     href="<?php echo e(route('gtk.index')); ?>">GTK</a>
             </div>

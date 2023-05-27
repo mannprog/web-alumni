@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CivitasController;
@@ -35,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/berita', BeritaController::class);
     Route::resource('/perusahaan', CompanyController::class);
     Route::resource('/gtk', CivitasController::class);
+    Route::resource('/alumni', AlumniController::class);
     Route::resource('/pengunjung', VisitorController::class);
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

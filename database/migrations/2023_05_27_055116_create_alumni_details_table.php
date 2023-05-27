@@ -11,19 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('civitas_details', function (Blueprint $table) {
+        Schema::create('alumni_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('nip', 18)->unique()->default('-');
-            $table->string('nuptk', 16)->unique()->default('-');
-            $table->string('nik', 16)->unique()->default('-');
-            $table->enum('jk', ['l', 'p'])->nullable();
+            $table->string('nis', 18)->default('-');
+            $table->string('nisn', 8)->default('-');
+            $table->string('nik', 16)->default('-');
+            $table->enum('jk', ['l', 'p']);
             $table->string('tempat_lahir')->default('-');
             $table->date('tanggal_lahir')->nullable();
             $table->string('no_handphone')->default('-');
-            $table->enum('status', ['pns', 'nonpns'])->nullable();
             $table->text('alamat')->nullable();
+            $table->enum('status', ['bekerja', 'tidakbekerja']);
+            $table->string('keahlian')->default('-');
+            $table->string('organisasi')->default('-');
+            $table->string('pengalaman_kerja')->default('-');
             $table->string('foto')->default('default.jpg');
             $table->timestamps();
         });
@@ -34,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('civitas_details');
+        Schema::dropIfExists('alumni_details');
     }
 };

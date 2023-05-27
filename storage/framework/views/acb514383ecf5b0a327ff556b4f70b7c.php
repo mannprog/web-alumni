@@ -29,8 +29,13 @@
                             :
                         </div>
                         <div class="col-7">
-                            <?php echo e($civitas->civitas_detail->status); ?>
-
+                            <?php if($civitas->civitas_detail->status === 'pns'): ?>
+                                PNS
+                            <?php elseif($civitas->civitas_detail->status === 'nonpns'): ?>
+                                Non PNS
+                            <?php else: ?>
+                                -
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -77,8 +82,13 @@
                             :
                         </div>
                         <div class="col-7">
-                            <?php echo e($civitas->civitas_detail->jk); ?>
-
+                            <?php if($civitas->civitas_detail->jk === 'l'): ?>
+                                Laki-laki
+                            <?php elseif($civitas->civitas_detail->jk === 'p'): ?>
+                                Perempuan
+                            <?php else: ?>
+                                -
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="row align-items-center">

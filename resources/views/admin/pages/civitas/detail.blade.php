@@ -30,7 +30,13 @@
                             :
                         </div>
                         <div class="col-7">
-                            {{ $civitas->civitas_detail->status }}
+                            @if ($civitas->civitas_detail->status === 'pns')
+                                PNS
+                            @elseif ($civitas->civitas_detail->status === 'nonpns')
+                                Non PNS
+                            @else
+                                -
+                            @endif
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -74,7 +80,13 @@
                             :
                         </div>
                         <div class="col-7">
-                            {{ $civitas->civitas_detail->jk }}
+                            @if ($civitas->civitas_detail->jk === 'l')
+                                Laki-laki
+                            @elseif ($civitas->civitas_detail->jk === 'p')
+                                Perempuan
+                            @else
+                                -
+                            @endif
                         </div>
                     </div>
                     <div class="row align-items-center">

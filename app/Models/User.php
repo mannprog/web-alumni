@@ -59,4 +59,19 @@ class User extends Authenticatable
     {
         return $this->hasOne(VisitorDetail::class);
     }
+
+    public function alumni_detail() 
+    {
+        return $this->hasOne(AlumniDetail::class);
+    }
+
+    public function alumni_family() 
+    {
+        return $this->hasOne(AlumniFamily::class);
+    }
+
+    public function alumni_academic() 
+    {
+        return $this->hasOne(AlumniAcademic::class);
+    }
 }
