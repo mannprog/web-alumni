@@ -2,46 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Berita;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
+use App\DataTables\NewsDataTable;
+use App\Http\Requests\NewsRequest;
+use App\Models\News;
 use Illuminate\Support\Facades\DB;
-use App\DataTables\BeritaDataTable;
-use App\Http\Requests\BeritaRequest;
 
-// use function Termwind\render;
-
-class BeritaController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(BeritaDataTable $datatable)
+    public function index(NewsDataTable $dataTable)
     {
-        return $datatable->render('admin.pages.berita.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return $dataTable->render('admin.pages.news.index');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(BeritaRequest $request)
+    public function store(NewsRequest $request)
     {
-        $beritaId = request('berita_id');
+        $newsId = request('berita_id');
 
         try {
-            DB::transaction(function () use ($beritaId, $request) {
+            DB::transaction(function () use ($newsId, $request) {
 
-                $berita = $request->validated();
+                $news = $request->validated();
 
-                Berita::updateOrCreate(['id' => $beritaId], $berita);
+                $data = [
+                    'user_id' => auth()->user()->id,
+                    'judul' => request('judul'),
+                    'isi' => request('isi'),
+                ];
+
+                News::updateOrCreate(['id' => $newsId], $data);
 
             });
         } catch (InvalidArgumentException $e) {
@@ -51,7 +47,7 @@ class BeritaController extends Controller
         }
 
         return response()->json([
-            'message' => 'News added successfully',
+            'message' => 'Berita berhasil ditambahkan',
         ]);
     }
 
@@ -66,10 +62,10 @@ class BeritaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $beritaId)
+    public function edit(string $newsId)
     {
-        $berita = Berita::findOrFail($beritaId);
-        return response()->json($berita);
+        $news = News::findOrFail($newsId);
+        return response()->json($news);
     }
 
     /**
@@ -86,15 +82,15 @@ class BeritaController extends Controller
     public function destroy(string $id)
     {
         try {
-            $berita = Berita::findOrFail($id);
-            $berita->delete();
+            $news = News::findOrFail($id);
+            $news->delete();
         } catch (InvalidArgumentException $e) {
             return response()->json([
                 'message' => $e->getMessage(),
             ], 400);
         }
         return response()->json([
-            'message' => 'News has been deleted',
+            'message' => 'Berita berhasil dihapus',
         ]);
     }
 }

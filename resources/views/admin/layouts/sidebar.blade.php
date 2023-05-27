@@ -20,7 +20,7 @@
     <li class="nav-item {{ Route::is('berita.index') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('berita.index') }}">
             <i class="fas fa-fw fa-newspaper"></i>
-            <span>News</span>
+            <span>Berita</span>
         </a>
     </li>
 

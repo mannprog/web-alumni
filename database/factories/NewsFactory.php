@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Berita>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\News>
  */
-class BeritaFactory extends Factory
+class NewsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,6 +17,7 @@ class BeritaFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => 4,
             'judul' => fake()->text(20),
             'isi' => fake()->text(500),
         ];

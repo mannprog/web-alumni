@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Berita;
-use Illuminate\Database\Seeder;
+use App\Models\News;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
-class BeritaSeeder extends Seeder
+class NewsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Berita::factory()->count(20)->create();
+        News::factory()->count(6)->create();
     }
 }

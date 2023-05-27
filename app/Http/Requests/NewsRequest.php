@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CompanyRequest extends FormRequest
+class NewsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,18 @@ class CompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'username' => 'required|string',
-            'email' => 'required|email',
-            'jenis_perusahaan' => 'required|string',
-            'alamat_perusahaan' => 'required|string|max:255',
-            'no_perusahaan' => 'required|string|max:13',
+            'judul' => 'required|max:50',
+            'isi' => 'required|max:255',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'judul.required' => 'Judul berita harus diisi',
+            'judul.max' => 'Judul berita tidak bisa lebih dari 50 karakter',
+            'isi.required' => 'Isi berita harus diisi',
+            'isi.max' => 'Isi berita tidak bisa lebih dari 255 karakter',
         ];
     }
 }

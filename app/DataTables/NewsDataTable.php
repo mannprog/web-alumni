@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Berita;
+use App\Models\News;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class BeritaDataTable extends DataTable
+class NewsDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,7 +24,7 @@ class BeritaDataTable extends DataTable
         return (new EloquentDataTable($query))
         ->addIndexColumn()
         ->addColumn('action', function ($row) {
-            return view('admin.pages.berita.component.action', compact('row'))->render();
+            return view('admin.pages.news.component.action', compact('row'))->render();
         })
         ->rawColumns(['action']);
     }
@@ -32,9 +32,10 @@ class BeritaDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Berita $model): QueryBuilder
+    public function query(News $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()
+        ->with('user');
     }
 
     /**
@@ -43,7 +44,7 @@ class BeritaDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('berita-table')
+                    ->setTableId('news-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -51,7 +52,7 @@ class BeritaDataTable extends DataTable
                         'responsivePriority' => 1,
                         'targets' => 1,
                     ])
-                    ->orderBy(1, 'asc')
+                    ->orderBy(2, 'asc')
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -76,6 +77,10 @@ class BeritaDataTable extends DataTable
                 ->orderable(false)
                 ->addClass("text-sm font-weight-normal")
                 ->addClass('text-center'),
+            Column::make('user.name')
+                ->addClass("text-sm font-weight-normal text-wrap")
+                ->orderable(false)
+                ->title('Penulis'),
             Column::make('judul')
                 ->addClass("text-sm font-weight-normal text-wrap")
                 ->title('Title'),
@@ -97,6 +102,6 @@ class BeritaDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Berita_' . date('YmdHis');
+        return 'News_' . date('YmdHis');
     }
 }

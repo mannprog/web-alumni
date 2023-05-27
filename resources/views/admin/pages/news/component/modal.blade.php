@@ -10,20 +10,20 @@
             </div>
             <form id="itemForm" name="itemForm" method="post">
                 @csrf
-                <input type="hidden" name="berita_id" id="berita_id">
+                <input type="hidden" name="news_id" id="news_id">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="judul">News Title<span class="text-danger">*</span></label>
+                        <label for="judul">Judul Berita<span class="text-danger">*</span></label>
                         <input type="text" class="form-control form-control-sm mr-2" name="judul" id="judul">
                     </div>
                     <div class="form-group">
-                        <label for="isi">News Content<span class="text-danger">*</span></label>
+                        <label for="isi">Isi Berita<span class="text-danger">*</span></label>
                         <textarea class="form-control" id="isi" name="isi" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveBtn">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="saveBtn">Simpan</button>
                 </div>
             </form>
         </div>

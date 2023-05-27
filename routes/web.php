@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CivitasController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-    Route::resource('/berita', BeritaController::class);
+    Route::resource('/berita', NewsController::class);
     Route::resource('/perusahaan', CompanyController::class);
     Route::resource('/gtk', CivitasController::class);
     Route::resource('/alumni', AlumniController::class);

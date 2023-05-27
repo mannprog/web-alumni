@@ -1,64 +1,66 @@
-@extends('admin.layouts.app', ['title' => 'News'])
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">News</h1>
-        <button id="createBerita" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        <button id="createNews" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-plus fa-sm text-white-50"></i> Add News</button>
     </div>
 
     <div class="card shadow">
         <div class="card-body">
             <div class="table-responsive">
-                {{ $dataTable->table(['class' => 'table align-items-center display responsive nowrap']) }}
+                <?php echo e($dataTable->table(['class' => 'table align-items-center display responsive nowrap'])); ?>
+
             </div>
         </div>
     </div>
-    @include('admin.pages.berita.component.modal')
-@endsection
+    <?php echo $__env->make('admin.pages.news.component.modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php $__env->stopSection(); ?>
 
-@push('custom-styles')
+<?php $__env->startPush('custom-styles'); ?>
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('library/http_cdn.datatables.net_1.13.4_css_dataTables.bootstrap5.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('library/http_cdn.datatables.net_1.13.4_css_dataTables.bootstrap5.css')); ?>">
     <link rel="stylesheet"
-        href="{{ asset('library/http_cdn.datatables.net_responsive_2.4.1_css_responsive.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('library/http_cdnjs.cloudflare.com_ajax_libs_toastr.js_latest_toastr.css') }}">
-@endpush
+        href="<?php echo e(asset('library/http_cdn.datatables.net_responsive_2.4.1_css_responsive.bootstrap5.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('library/http_cdnjs.cloudflare.com_ajax_libs_toastr.js_latest_toastr.css')); ?>">
+<?php $__env->stopPush(); ?>
 
-@push('custom-scripts')
+<?php $__env->startPush('custom-scripts'); ?>
     <!-- DataTables  & Plugins -->
-    <script src="{{ asset('library/http_cdn.datatables.net_1.13.4_js_jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('library/http_cdn.datatables.net_1.13.4_js_dataTables.bootstrap5.js') }}"></script>
-    <script src="{{ asset('library/http_cdn.datatables.net_responsive_2.4.1_js_dataTables.responsive.js') }}"></script>
-    <script src="{{ asset('library/http_cdn.datatables.net_responsive_2.4.1_js_responsive.bootstrap4.js') }}"></script>
+    <script src="<?php echo e(asset('library/http_cdn.datatables.net_1.13.4_js_jquery.dataTables.js')); ?>"></script>
+    <script src="<?php echo e(asset('library/http_cdn.datatables.net_1.13.4_js_dataTables.bootstrap5.js')); ?>"></script>
+    <script src="<?php echo e(asset('library/http_cdn.datatables.net_responsive_2.4.1_js_dataTables.responsive.js')); ?>"></script>
+    <script src="<?php echo e(asset('library/http_cdn.datatables.net_responsive_2.4.1_js_responsive.bootstrap4.js')); ?>"></script>
 
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    <?php echo e($dataTable->scripts(attributes: ['type' => 'module'])); ?>
+
 
     <script>
         $(document).ready(function() {
 
-            $('#createBerita').click(function() {
+            $('#createNews').click(function() {
                 setTimeout(function() {
                     $('#judul').focus();
                 }, 500);
                 $('#saveBtn').removeAttr('disabled');
                 $('#saveBtn').html("Simpan");
                 $('#itemForm').trigger("reset");
-                $('.modal-title').html("Add News");
+                $('.modal-title').html("Tambah Berita");
                 $('#modal-md').modal('show');
             });
 
             $('body').on('click', '#editBerita', function() {
-                var berita_id = $(this).data('id');
-                $.get("{{ route('berita.index') }}" + '/' + berita_id + '/edit', function(data) {
+                var news_id = $(this).data('id');
+                $.get("<?php echo e(route('berita.index')); ?>" + '/' + news_id + '/edit', function(data) {
                     $('#modal-md').modal('show');
                     setTimeout(function() {
                         $('#judul').focus();
                     }, 500);
-                    $('.modal-title').html("Change News");
+                    $('.modal-title').html("Ubah Berita");
                     $('#saveBtn').removeAttr('disabled');
                     $('#saveBtn').html("Simpan");
-                    $('#berita_id').val(data.id);
+                    $('#news_id').val(data.id);
                     $('#judul').val(data.judul);
                     $('#isi').val(data.isi);
                 })
@@ -68,13 +70,13 @@
                 e.preventDefault();
                 var confirmation = confirm("Apakah yakin untuk menghapus?");
                 if (confirmation) {
-                    var berita_id = $(this).data('id');
+                    var news_id = $(this).data('id');
                     var formData = new FormData($('#deleteDoc')[0]);
                     $('.deleteBtn').attr('disabled', 'disabled');
                     $('.deleteBtn').html('...');
                     $.ajax({
                         data: formData,
-                        url: "{{ route('berita.index') }}" + '/' + berita_id,
+                        url: "<?php echo e(route('berita.index')); ?>" + '/' + news_id,
                         contentType: false,
                         processData: false,
                         type: "POST",
@@ -100,7 +102,7 @@
                 var formData = new FormData($('#itemForm')[0]);
                 $.ajax({
                     data: formData,
-                    url: "{{ route('berita.store') }}",
+                    url: "<?php echo e(route('berita.store')); ?>",
                     contentType: false,
                     processData: false,
                     type: "POST",
@@ -130,4 +132,6 @@
             });
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('admin.layouts.app', ['title' => 'News'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\web-alumni\resources\views/admin/pages/news/index.blade.php ENDPATH**/ ?>
