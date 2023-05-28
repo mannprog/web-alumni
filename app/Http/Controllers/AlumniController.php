@@ -131,21 +131,22 @@ class AlumniController extends Controller
                     'rata_ijazah' => 'required',
                 ];
 
+                if ($foto = request('foto')) {
+                    $filename = $foto->getClientOriginalName();
+                    $foto->move(public_path('img/foto'), $filename);
+                }
+
                 $user = User::findOrFail($alumni_id);
                 $user->name = request('name');
                 $user->email = request('email');
                 $user->username = request('username');
+                $user->foto = $filename;
                 $user->save();
 
                 $alumniDetail = AlumniDetail::where('user_id', $user->id)->first();
                 if (!$alumniDetail) {
                     $alumniDetail = new AlumniDetail();
                     $alumniDetail->user_id = $user->id;
-                }
-
-                if ($foto = request('foto')) {
-                    $filename = $foto->getClientOriginalName();
-                    $foto->move(public_path('img/foto'), $filename);
                 }
 
                 $alumniDetail->nis = request('nis');
@@ -160,7 +161,6 @@ class AlumniController extends Controller
                 $alumniDetail->keahlian = request('keahlian');
                 $alumniDetail->organisasi = request('organisasi');
                 $alumniDetail->pengalaman_kerja = request('pengalaman_kerja');
-                $alumniDetail->foto = $filename;
                 $alumniDetail->save();
 
                 $AlumniFamily = AlumniFamily::where('user_id', $user->id)->first();

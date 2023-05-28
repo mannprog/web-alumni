@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('no_handphone')->default('-');
             $table->enum('status', ['pns', 'nonpns'])->nullable();
             $table->text('alamat')->nullable();
-            $table->string('foto')->default('default.jpg');
             $table->timestamps();
         });
     }

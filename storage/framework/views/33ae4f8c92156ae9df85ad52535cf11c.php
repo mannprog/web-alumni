@@ -9,6 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <link rel="icon" href="<?php echo e(asset('img/logo.png')); ?>" type="image/x-icon" />
+
     <title>Login</title>
 
     <!-- Custom fonts for this template-->

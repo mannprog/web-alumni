@@ -23,7 +23,6 @@ class AlumniDetail extends Model
         'keahlian',
         'organisasi',
         'pengalaman_kerja',
-        'foto',
     ];
 
     public function user()

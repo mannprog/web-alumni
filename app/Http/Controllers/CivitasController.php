@@ -109,10 +109,16 @@ class CivitasController extends Controller
                     'role' => 'required',
                 ];
 
+                if ($foto = request('foto')) {
+                    $filename = $foto->getClientOriginalName();
+                    $foto->move(public_path('img/foto'), $filename);
+                }
+
                 $user = User::findOrFail($civitas_id);
                 $user->name = request('name');
                 $user->email = request('email');
                 $user->username = request('username');
+                $user->foto = $filename;
                 (request('role') )? $user->syncRoles(request('role')) : 'Berarti bukan civitas';
                 $user->save();
 
@@ -120,11 +126,6 @@ class CivitasController extends Controller
                 if (!$civitasDetail) {
                     $civitasDetail = new CivitasDetail();
                     $civitasDetail->user_id = $user->id;
-                }
-
-                if ($foto = request('foto')) {
-                    $filename = $foto->getClientOriginalName();
-                    $foto->move(public_path('img/foto'), $filename);
                 }
 
                 $civitasDetail->nip = request('nip');
@@ -136,7 +137,6 @@ class CivitasController extends Controller
                 $civitasDetail->no_handphone = request('no_handphone');
                 $civitasDetail->status = request('status');
                 $civitasDetail->alamat = request('alamat');
-                $civitasDetail->foto = $filename;
                 $civitasDetail->save();
 
             });

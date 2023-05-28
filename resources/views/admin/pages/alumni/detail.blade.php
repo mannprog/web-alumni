@@ -13,7 +13,7 @@
             </div> --}}
             <div class="row">
                 <div class="col-lg-3">
-                    <img src="{{ asset('img/foto/' . $alumni->alumni_detail->foto) }}" class="img-fluid rounded">
+                    <img src="{{ asset('img/foto/' . $alumni->foto) }}" class="img-fluid rounded">
                 </div>
                 <div class="col-lg-9">
                     <div class="row align-items-center">

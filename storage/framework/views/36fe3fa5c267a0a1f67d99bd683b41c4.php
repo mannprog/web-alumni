@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="<?php echo e(asset('assets/home/img/favicon.png')); ?>" rel="icon">
-    <link href="<?php echo e(asset('assets/home/img/apple-touch-icon.png')); ?>" rel="apple-touch-icon">
+    <link rel="icon" href="<?php echo e(asset('img/logo.png')); ?>" type="image/x-icon" />
+    
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"

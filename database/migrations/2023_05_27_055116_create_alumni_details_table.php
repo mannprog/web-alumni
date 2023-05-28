@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('keahlian')->default('-');
             $table->string('organisasi')->default('-');
             $table->string('pengalaman_kerja')->default('-');
-            $table->string('foto')->default('default.jpg');
             $table->timestamps();
         });
     }

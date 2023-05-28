@@ -24,7 +24,7 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request)
     {
-        $newsId = request('berita_id');
+        $newsId = request('news_id');
 
         try {
             DB::transaction(function () use ($newsId, $request) {

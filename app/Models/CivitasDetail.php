@@ -20,7 +20,6 @@ class CivitasDetail extends Model
         'no_handphone',
         'status',
         'alamat',
-        'foto',
     ];
 
     public function user()
