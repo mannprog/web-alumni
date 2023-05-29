@@ -180,15 +180,15 @@
                             <div class="col-7">
                                 @if ($user->company_detail->jenis_perusahaan === 'pt')
                                     Perseroan Terbatas (PT)
-                                @elseif ($user->civitas_detail->status === 'cv')
+                                @elseif ($user->company_detail->jenis_perusahaan === 'cv')
                                     Commanditaire Vennootschap (CV)
-                                @elseif ($user->civitas_detail->status === 'firma')
+                                @elseif ($user->company_detail->jenis_perusahaan === 'firma')
                                     Firma
-                                @elseif ($user->civitas_detail->status === 'koperasi')
+                                @elseif ($user->company_detail->jenis_perusahaan === 'koperasi')
                                     Koperasi
-                                @elseif ($user->civitas_detail->status === 'persero')
+                                @elseif ($user->company_detail->jenis_perusahaan === 'persero')
                                     Persero
-                                @elseif ($user->civitas_detail->status === 'umkm')
+                                @elseif ($user->company_detail->jenis_perusahaan === 'umkm')
                                     UMKM
                                 @else
                                     -

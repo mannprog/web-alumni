@@ -10,17 +10,15 @@
         <div class="card-body">
             
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-3">
+                    <img src="<?php echo e(asset('img/foto/' . $company->foto)); ?>" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-9">
                     <div class="row align-items-center">
-                        <div class="col-4">
-                            Nama
-                        </div>
-                        <div class="col-1">
-                            :
-                        </div>
-                        <div class="col-7">
-                            <?php echo e($company->name); ?>
+                        <div class="col-lg-12">
+                            <h4 class="font-weight-bold border-bottom pb-2"><?php echo e($company->name); ?>
 
+                            </h4>
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -31,8 +29,21 @@
                             :
                         </div>
                         <div class="col-7">
-                            <?php echo e($company->company_detail->jenis_perusahaan); ?>
-
+                            <?php if($company->company_detail->jenis_perusahaan === 'pt'): ?>
+                                Perseroan Terbatas (PT)
+                            <?php elseif($company->company_detail->jenis_perusahaan === 'cv'): ?>
+                                Commanditaire Vennootschap (CV)
+                            <?php elseif($company->company_detail->jenis_perusahaan === 'firma'): ?>
+                                Firma
+                            <?php elseif($company->company_detail->jenis_perusahaan === 'koperasi'): ?>
+                                Koperasi
+                            <?php elseif($company->company_detail->jenis_perusahaan === 'persero'): ?>
+                                Persero
+                            <?php elseif($company->company_detail->jenis_perusahaan === 'umkm'): ?>
+                                UMKM
+                            <?php else: ?>
+                                -
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -47,8 +58,6 @@
 
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
                     <div class="row align-items-center">
                         <div class="col-4">
                             Username
@@ -85,6 +94,10 @@
 
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-6">
+                </div>
+                <div class="col-lg-6">
                 </div>
             </div>
         </div>

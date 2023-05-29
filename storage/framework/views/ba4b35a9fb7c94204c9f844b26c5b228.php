@@ -74,7 +74,7 @@
                     $('#edit_no_handphone').val(data.civitas_detail.no_handphone);
                     $('#edit_status').val(data.civitas_detail.status);
                     $('#edit_alamat').val(data.civitas_detail.alamat);
-                    $('#edit_foto').val(data.civitas_detail.foto);
+                    $('#edit_foto').val(data.foto);
                     $('#edit_role').val(data.roles[0].id);
                 })
             });

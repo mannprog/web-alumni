@@ -80,12 +80,12 @@ class CompanyDataTable extends DataTable
             Column::make('name')
                 ->addClass("text-sm font-weight-normal text-wrap")
                 ->title('Nama Perusahaan'),
-            Column::make('company_detail.jenis_perusahaan')
-                ->addClass("text-sm font-weight-normal text-wrap")
-                ->title('Jenis Perusahaan'),
             Column::make('company_detail.alamat_perusahaan')
                 ->addClass("text-sm font-weight-normal text-wrap")
                 ->title('Alamat Perusahaan'),
+            Column::make('company_detail.no_perusahaan')
+                ->addClass("text-sm font-weight-normal text-wrap")
+                ->title('Nomor Perusahaan'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

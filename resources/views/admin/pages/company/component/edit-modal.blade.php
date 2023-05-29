@@ -33,13 +33,13 @@
                     <div class="form-group">
                         <label for="jenis_perusahaan">Jenis Perusahaan<span class="text-danger">*</span></label>
                         <select class="form-control" name="jenis_perusahaan" id="edit_jenis_perusahaan">
-                            <option>---Pilih Jenis Perusahaan---</option>
-                            <option value="Perseroan Terbatas (PT)">Perseroan Terbatas (PT)</option>
-                            <option value="Commanditaire Vennootschap (CV)">Commanditaire Vennootschap (CV)</option>
-                            <option value="Firma">Firma</option>
-                            <option value="Koperasi">Koperasi</option>
-                            <option value="Persero">Persero</option>
-                            <option value="UMKM">UMKM</option>
+                            <option selected disabled>---Pilih Jenis Perusahaan---</option>
+                            <option value="pt">Perseroan Terbatas (PT)</option>
+                            <option value="cv">Commanditaire Vennootschap (CV)</option>
+                            <option value="firma">Firma</option>
+                            <option value="koperasi">Koperasi</option>
+                            <option value="persero">Persero</option>
+                            <option value="umkm">UMKM</option>
                         </select>
                     </div>
                     <div class="form-group">
