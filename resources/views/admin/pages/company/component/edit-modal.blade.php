@@ -1,4 +1,3 @@
-<!-- Modal Create And Edit -->
 <div class="modal fade" id="modal-edit">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

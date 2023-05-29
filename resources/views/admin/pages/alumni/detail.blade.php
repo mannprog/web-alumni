@@ -71,10 +71,12 @@
                                     :
                                 </div>
                                 <div class="col-7">
-                                    @if ($alumni->alumni_detail->jk === 'l')
+                                    @if ($user->alumni_detail->jk === 'l')
                                         Laki-laki
-                                    @else
+                                    @elseif ($user->alumni_detail->jk === 'p')
                                         Perempuan
+                                    @else
+                                        -
                                     @endif
                                 </div>
                             </div>
@@ -253,10 +255,12 @@
                                     :
                                 </div>
                                 <div class="col-7">
-                                    @if ($alumni->alumni_academic->jurusan === 'tkj')
+                                    @if ($user->alumni_academic->jurusan === 'tkj')
                                         Teknik Komputer Jaringan
-                                    @else
+                                    @elseif ($user->alumni_academic->jurusan === 'rpl')
                                         Rekayasa Perangkat Lunak
+                                    @else
+                                        -
                                     @endif
                                 </div>
                             </div>

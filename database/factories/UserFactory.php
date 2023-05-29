@@ -92,7 +92,7 @@ class UserFactory extends Factory
             } elseif ($user->id == 5) {
                 $user->assignRole('perusahaan');
                 $user->company_detail()->create([
-                    'jenis_perusahaan' => fake('id_ID')->jobTitle(),
+                    'jenis_perusahaan' => 'pt',
                     'alamat_perusahaan' => fake('id_ID')->address(),
                     'no_perusahaan' => fake('id_ID')->phoneNumber(),
                 ]);

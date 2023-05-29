@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('jenis_perusahaan');
+            $table->enum('jenis_perusahaan', ['pt', 'cv', 'firma', 'koperasi', 'persero', 'umkm'])->nullable();
             $table->text('alamat_perusahaan');
             $table->string('no_perusahaan');
             $table->timestamps();

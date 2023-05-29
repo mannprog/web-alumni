@@ -75,7 +75,7 @@
                     $('#edit_keahlian').val(data.alumni_detail.keahlian);
                     $('#edit_organisasi').val(data.alumni_detail.organisasi);
                     $('#edit_pengalaman_kerja').val(data.alumni_detail.pengalaman_kerja);
-                    $('#edit_foto').val(data.alumni_detail.foto);
+                    $('#edit_foto').val(data.foto);
                     $('#edit_ayah').val(data.alumni_family.ayah);
                     $('#edit_pekerjaan_ayah').val(data.alumni_family.pekerjaan_ayah);
                     $('#edit_ibu').val(data.alumni_family.ibu);
