@@ -15,7 +15,6 @@
         </div>
     </div>
     @include('admin.pages.alumni.component.add-modal')
-    @include('admin.pages.alumni.component.edit-modal')
 @endsection
 
 @push('custom-styles')

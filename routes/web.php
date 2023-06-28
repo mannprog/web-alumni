@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PetugasController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
     // Pengaturan User
     Route::resource('/petugas', PetugasController::class);
     Route::resource('/alumni', AlumniController::class);
-    Route::resource('/perusahaan', CompanyController::class);
+    Route::resource('/perusahaan', PerusahaanController::class);
 
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -49,7 +49,11 @@
         :
     </div>
     <div class="col-7">
-        {{ $alumni->alumniDetail->alamat }}
+        @if ($alumni->alumniDetail->alamat)
+            {!! $alumni->alumniDetail->alamat !!}
+        @else
+            -
+        @endif
     </div>
 </div>
 <div class="row align-items-center">

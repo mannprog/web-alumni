@@ -47,6 +47,7 @@ class PetugasController extends Controller
                     'email' => request('email'),
                     'username' => request('username'),
                     'password' => password_hash(request('password'), PASSWORD_DEFAULT),
+                    'is_admin' => 0,
                 ])->assignRole(request('role'));
 
                 PetugasDetail::create([

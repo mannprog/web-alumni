@@ -67,7 +67,7 @@
     </div>
     <div class="col-7">
         @if ($alumni->alumniKeluarga->alamat_ortu)
-            {{ $alumni->alumniKeluarga->alamat_ortu }}
+            {!! $alumni->alumniKeluarga->alamat_ortu !!}
         @else
             -
         @endif

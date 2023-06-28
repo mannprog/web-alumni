@@ -37,11 +37,6 @@
                                         Login
                                     </button>
                                 </form>
-                                <hr>
-                                <div class="text-center">
-                                    <p class="small">Apakah anda belum terdaftar? <a href="register.html">Daftar
-                                            Sekarang!</a></p>
-                                </div>
                             </div>
                         </div>
                     </div>
