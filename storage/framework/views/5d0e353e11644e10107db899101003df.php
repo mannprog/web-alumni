@@ -15,7 +15,7 @@
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item <?php echo e(Route::is('berita.index') ? 'active' : ''); ?>">
+    <li class="nav-item <?php echo e(Route::is('berita*') ? 'active' : ''); ?>">
         <a class="nav-link" href="<?php echo e(route('berita.index')); ?>">
             <i class="fas fa-fw fa-newspaper"></i>
             <span>Berita</span>
@@ -31,8 +31,15 @@
 
     <li class="nav-item">
         <a class="nav-link">
+            <i class="fas fa-fw fa-user-graduate"></i>
+            <span>Alumni</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link">
             <i class="fas fa-fw fa-file-alt"></i>
-            <span>Kuesioner</span>
+            <span>Laporan</span>
         </a>
     </li>
 
@@ -42,30 +49,20 @@
         Pengaturan
     </div>
 
-    <li class="nav-item <?php echo e(Route::is('perusahaan.index') ? 'active' : ''); ?>">
-        <a class="nav-link" href="<?php echo e(route('perusahaan.index')); ?>">
-            <i class="fas fa-fw fa-building"></i>
-            <span>Perusahaan</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Pengunjung</span></a>
-    </li>
-
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-school"></i>
-            <span>Civitas</span>
+            <i class="fas fa-fw fa-user"></i>
+            <span>Users</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item <?php echo e(Route::is('alumni.index') ? 'active' : ''); ?>"
+                <a class="collapse-item <?php echo e(Route::is('petugas*') ? 'active' : ''); ?>"
+                    href="<?php echo e(route('petugas.index')); ?>">Petugas</a>
+                <a class="collapse-item <?php echo e(Route::is('alumni*') ? 'active' : ''); ?>"
                     href="<?php echo e(route('alumni.index')); ?>">Alumni</a>
-                <a class="collapse-item <?php echo e(Route::is('gtk.index') ? 'active' : ''); ?>"
-                    href="<?php echo e(route('gtk.index')); ?>">GTK</a>
+                <a class="collapse-item <?php echo e(Route::is('perusahaan*') ? 'active' : ''); ?>"
+                    href="<?php echo e(route('perusahaan.index')); ?>">Perusahaan</a>
             </div>
         </div>
     </li>

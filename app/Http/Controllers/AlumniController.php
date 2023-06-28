@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AlumniAcademic;
 use App\Models\User;
 use InvalidArgumentException;
 use Illuminate\Support\Facades\DB;
 use App\DataTables\AlumniDataTable;
+use App\Models\AlumniAkademik;
 use App\Models\AlumniDetail;
-use App\Models\AlumniFamily;
+use App\Models\AlumniKeluarga;
+use App\Models\UserKontak;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
 
 class AlumniController extends Controller
 {
@@ -33,9 +37,14 @@ class AlumniController extends Controller
                     'username' => 'required|string|unique:users,username',
                     'email' => 'required|email|unique:users,email',
                     'password' => 'required|min:4',
-                    'jk' => 'required',
+                    'jenis_kelamin' => 'required',
+                    'pendidikan_terakhir' => 'required',
                     'status' => 'required',
                     'jurusan' => 'required',
+                    'nis' => 'required|max:16',
+                    'nisn' => 'required|max:8',
+                    'tahun_masuk' => 'required',
+                    'tahun_lulus' => 'required',
                 ]);
 
                 // Buat User terlebih dahulu lalu ...
@@ -48,17 +57,26 @@ class AlumniController extends Controller
 
                 AlumniDetail::create([
                     'user_id' => $user->id,
-                    'jk' => request('jk'),
+                    'jenis_kelamin' => request('jenis_kelamin'),
                     'status' => request('status'),
+                    'pendidikan_terakhir' => request('pendidikan_terakhir'),
                 ]);
 
-                AlumniFamily::create([
+                AlumniKeluarga::create([
                     'user_id' => $user->id,
                 ]);
 
-                AlumniAcademic::create([
+                AlumniAkademik::create([
                     'user_id' => $user->id,
+                    'nis' => request('nis'),
+                    'nisn' => request('nisn'),
                     'jurusan' => request('jurusan'),
+                    'tahun_masuk' => request('tahun_masuk'),
+                    'tahun_lulus' => request('tahun_lulus'),
+                ]);
+
+                UserKontak::create([
+                    'user_id' => $user->id,
                 ]);
             });
         } catch (InvalidArgumentException $e) {
@@ -77,7 +95,7 @@ class AlumniController extends Controller
      */
     public function show(string $alumniId)
     {
-        $alumni = User::with(['alumni_detail', 'alumni_family', 'alumni_academic'])->findOrFail($alumniId);
+        $alumni = User::with(['alumniDetail', 'alumniKeluarga', 'alumniAkademik', 'userKontak'])->findOrFail($alumniId);
 
         return view('admin.pages.alumni.detail', [
             'alumni' => $alumni
@@ -89,54 +107,62 @@ class AlumniController extends Controller
      */
     public function edit(string $alumniId)
     {
-        $alumni = User::with('alumni_detail', 'alumni_family', 'alumni_academic')->findOrFail($alumniId);
-        return response()->json($alumni);
+        $alumni = User::with(['alumniDetail', 'alumniKeluarga', 'alumniAkademik', 'userKontak'])->findOrFail($alumniId);
+        return view('admin.pages.alumni.component.edit', [
+            'alumni' => $alumni,
+        ]);
+        // return response()->json($alumni);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update()
+    public function update($id): RedirectResponse
     {
-        $alumni_id = request('alumni_id');
-
         try {
-            DB::transaction(function () use ($alumni_id) {
+            DB::transaction(function () use ($id) {
 
                 $validated = [
                     'name' => 'required|string',
                     'username' => 'required|string',
                     'email' => 'required|email',
-                    'nis' => 'required|string|max:18',
-                    'nisn' => 'required|string|max:16',
                     'nik' => 'required|string|max:16',
-                    'jk' => 'required',
+                    'jenis_kelamin' => 'required',
                     'tempat_lahir' => 'required|string',
                     'tanggal_lahir' => 'required',
-                    'no_handphone' => 'required',
                     'alamat' => 'required|string',
                     'status' => 'required',
+                    'pendidikan_terakhir' => 'required',
                     'keahlian' => 'required',
                     'organisasi' => 'required',
                     'pengalaman_kerja' => 'required',
                     'foto' => 'required|mimes:png,jpg,jpeg,svg|max:1048',
-                    'ayah' => 'required',
-                    'pekerjaan_ayah' => 'required',
-                    'ibu' => 'required',
-                    'pekerjaan_ibu' => 'required',
+                    'no_handphone' => 'required',
+                    'facebook' => 'required',
+                    'instagram' => 'required',
+                    'twitter' => 'required',
+                    'nis' => 'required|string|max:16',
+                    'nisn' => 'required|string|max:8',
+                    'angkatan' => 'required',
                     'jurusan' => 'required',
                     'rombel' => 'required',
                     'tahun_masuk' => 'required',
                     'tahun_lulus' => 'required',
                     'rata_ijazah' => 'required',
+                    'ayah' => 'required',
+                    'pekerjaan_ayah' => 'required',
+                    'ibu' => 'required',
+                    'pekerjaan_ibu' => 'required',
+                    'alamat_ortu' => 'required|string',
                 ];
 
                 if ($foto = request('foto')) {
                     $filename = $foto->getClientOriginalName();
                     $foto->move(public_path('img/foto'), $filename);
+                    $validated['foto'] = $filename;
                 }
 
-                $user = User::findOrFail($alumni_id);
+                $user = User::findOrFail($id);
                 $user->name = request('name');
                 $user->email = request('email');
                 $user->username = request('username');
@@ -149,55 +175,69 @@ class AlumniController extends Controller
                     $alumniDetail->user_id = $user->id;
                 }
 
-                $alumniDetail->nis = request('nis');
-                $alumniDetail->nisn = request('nisn');
                 $alumniDetail->nik = request('nik');
-                $alumniDetail->jk = request('jk');
+                $alumniDetail->jenis_kelamin = request('jenis_kelamin');
                 $alumniDetail->tempat_lahir = request('tempat_lahir');
                 $alumniDetail->tanggal_lahir = request('tanggal_lahir');
-                $alumniDetail->no_handphone = request('no_handphone');
                 $alumniDetail->alamat = request('alamat');
                 $alumniDetail->status = request('status');
+                $alumniDetail->pendidikan_terakhir = request('pendidikan_terakhir');
                 $alumniDetail->keahlian = request('keahlian');
                 $alumniDetail->organisasi = request('organisasi');
                 $alumniDetail->pengalaman_kerja = request('pengalaman_kerja');
                 $alumniDetail->save();
 
-                $AlumniFamily = AlumniFamily::where('user_id', $user->id)->first();
-                if (!$AlumniFamily) {
-                    $AlumniFamily = new AlumniFamily();
-                    $AlumniFamily->user_id = $user->id;
+                $userKontak = UserKontak::where('user_id', $user->id)->first();
+                if (!$userKontak) {
+                    $userKontak = new UserKontak();
+                    $userKontak->user_id = $user->id;
                 }
 
-                $AlumniFamily->ayah = request('ayah');
-                $AlumniFamily->pekerjaan_ayah = request('pekerjaan_ayah');
-                $AlumniFamily->ibu = request('ibu');
-                $AlumniFamily->pekerjaan_ibu = request('pekerjaan_ibu');
-                $AlumniFamily->save();
+                $userKontak->no_handphone = request('no_handphone');
+                $userKontak->facebook = request('facebook');
+                $userKontak->instagram = request('instagram');
+                $userKontak->twitter = request('twitter');
+                $userKontak->save();
 
-                $AlumniAcademic = AlumniAcademic::where('user_id', $user->id)->first();
-                if (!$AlumniAcademic) {
-                    $AlumniAcademic = new AlumniAcademic();
-                    $AlumniAcademic->user_id = $user->id;
+                $alumniAkademik = AlumniAkademik::where('user_id', $user->id)->first();
+                if (!$alumniAkademik) {
+                    $alumniAkademik = new AlumniAkademik();
+                    $alumniAkademik->user_id = $user->id;
                 }
 
-                $AlumniAcademic->jurusan = request('jurusan');
-                $AlumniAcademic->rombel = request('rombel');
-                $AlumniAcademic->tahun_masuk = request('tahun_masuk');
-                $AlumniAcademic->tahun_lulus = request('tahun_lulus');
-                $AlumniAcademic->rata_ijazah = request('rata_ijazah');
-                $AlumniAcademic->save();
+                $alumniAkademik->nis = request('nis');
+                $alumniAkademik->nisn = request('nisn');
+                $alumniAkademik->angkatan = request('angkatan');
+                $alumniAkademik->jurusan = request('jurusan');
+                $alumniAkademik->rombel = request('rombel');
+                $alumniAkademik->tahun_masuk = request('tahun_masuk');
+                $alumniAkademik->tahun_lulus = request('tahun_lulus');
+                $alumniAkademik->rata_ijazah = request('rata_ijazah');
+                $alumniAkademik->save();
+
+                $alumniKeluarga = AlumniKeluarga::where('user_id', $user->id)->first();
+                if (!$alumniKeluarga) {
+                    $alumniKeluarga = new AlumniKeluarga();
+                    $alumniKeluarga->user_id = $user->id;
+                }
+
+                $alumniKeluarga->ayah = request('ayah');
+                $alumniKeluarga->pekerjaan_ayah = request('pekerjaan_ayah');
+                $alumniKeluarga->ibu = request('ibu');
+                $alumniKeluarga->pekerjaan_ibu = request('pekerjaan_ibu');
+                $alumniKeluarga->alamat_ortu = request('alamat_ortu');
+                $alumniKeluarga->save();
 
             });
         } catch (InvalidArgumentException $e) {
-            return response()->json([
-                'message' => $e->getMessage(),
-            ], 400);
+            $message = $e->getMessage();
+            return redirect()->route('alumni.index')->with('message', $message);
+            // return response()->json([
+            //     'message' => $e->getMessage(),
+            // ], 400);
         }
 
-        return response()->json([
-            'message' => 'Data Alumni berhasil dirubah',
-        ]);
+        return redirect()->route('alumni.index')->with('success', 'Data Alumni berhasil diupdate');
     }
 
     /**

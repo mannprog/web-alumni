@@ -22,11 +22,11 @@ class AlumniDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addIndexColumn()
-        ->addColumn('action', function ($row) {
-            return view('admin.pages.alumni.component.action', compact('row'))->render();
-        })
-        ->rawColumns(['action']);
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+                return view('admin.pages.alumni.component.action', compact('row'))->render();
+            })
+            ->rawColumns(['action']);
     }
 
     /**
@@ -35,8 +35,8 @@ class AlumniDataTable extends DataTable
     public function query(User $model): QueryBuilder
     {
         return $model->newQuery()
-        ->role('alumni')
-        ->with(['alumni_detail', 'alumni_family', 'alumni_academic', 'roles']);
+            ->role('alumni')
+            ->with(['alumniDetail', 'alumniKeluarga', 'alumniAkademik', 'roles']);
     }
 
     /**
@@ -45,24 +45,24 @@ class AlumniDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('alumni-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->addColumnDef([
-                        'responsivePriority' => 1,
-                        'targets' => 1,
-                    ])
-                    ->orderBy(1, 'asc')
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('alumni-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->addColumnDef([
+                'responsivePriority' => 1,
+                'targets' => 1,
+            ])
+            ->orderBy(1, 'asc')
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -80,17 +80,17 @@ class AlumniDataTable extends DataTable
             Column::make('name')
                 ->addClass("text-sm font-weight-normal text-wrap")
                 ->title('Nama Lengkap'),
-            Column::make('alumni_detail.nis')
+            Column::make('alumni_akademik.nis')
                 ->addClass("text-sm font-weight-normal text-wrap")
                 ->title('NIS'),
-            Column::make('alumni_detail.nisn')
+            Column::make('alumni_akademik.nisn')
                 ->addClass("text-sm font-weight-normal text-wrap")
                 ->title('NISN'),
-            Column::make('alumni_academic.tahun_masuk')
+            Column::make('alumni_akademik.tahun_masuk')
                 ->addClass("text-sm font-weight-normal text-wrap")
                 ->orderable(false)
                 ->title('Tahun Masuk'),
-            Column::make('alumni_academic.tahun_lulus')
+            Column::make('alumni_akademik.tahun_lulus')
                 ->addClass("text-sm font-weight-normal text-wrap")
                 ->orderable(false)
                 ->title('Tahun Lulus'),

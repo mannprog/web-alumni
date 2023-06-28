@@ -19,7 +19,7 @@
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item {{ Route::is('berita.index') ? 'active' : '' }}">
+    <li class="nav-item {{ Route::is('berita*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('berita.index') }}">
             <i class="fas fa-fw fa-newspaper"></i>
             <span>Berita</span>
@@ -35,8 +35,15 @@
 
     <li class="nav-item">
         <a class="nav-link">
+            <i class="fas fa-fw fa-user-graduate"></i>
+            <span>Alumni</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link">
             <i class="fas fa-fw fa-file-alt"></i>
-            <span>Kuesioner</span>
+            <span>Laporan</span>
         </a>
     </li>
 
@@ -46,30 +53,20 @@
         Pengaturan
     </div>
 
-    <li class="nav-item {{ Route::is('perusahaan.index') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('perusahaan.index') }}">
-            <i class="fas fa-fw fa-building"></i>
-            <span>Perusahaan</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Pengunjung</span></a>
-    </li>
-
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-school"></i>
-            <span>Civitas</span>
+            <i class="fas fa-fw fa-user"></i>
+            <span>Users</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ Route::is('alumni.index') ? 'active' : '' }}"
+                <a class="collapse-item {{ Route::is('petugas*') ? 'active' : '' }}"
+                    href="{{ route('petugas.index') }}">Petugas</a>
+                <a class="collapse-item {{ Route::is('alumni*') ? 'active' : '' }}"
                     href="{{ route('alumni.index') }}">Alumni</a>
-                <a class="collapse-item {{ Route::is('gtk.index') ? 'active' : '' }}"
-                    href="{{ route('gtk.index') }}">GTK</a>
+                <a class="collapse-item {{ Route::is('perusahaan*') ? 'active' : '' }}"
+                    href="{{ route('perusahaan.index') }}">Perusahaan</a>
             </div>
         </div>
     </li>

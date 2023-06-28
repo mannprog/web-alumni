@@ -3,11 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use App\Models\UserKontak;
+use App\Models\PetugasDetail;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -18,13 +20,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'username',
-        'email',
-        'password',
-        'foto'
-    ];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,38 +42,43 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function company_detail() 
+    public function userKontak()
     {
-        return $this->hasOne(CompanyDetail::class);
+        return $this->hasOne(UserKontak::class);
     }
 
-    public function civitas_detail() 
+    public function petugasDetail()
     {
-        return $this->hasOne(CivitasDetail::class);
+        return $this->hasOne(PetugasDetail::class);
     }
 
-    public function visitor_detail() 
-    {
-        return $this->hasOne(VisitorDetail::class);
-    }
-
-    public function alumni_detail() 
+    public function alumniDetail()
     {
         return $this->hasOne(AlumniDetail::class);
     }
 
-    public function alumni_family() 
+    public function alumniKeluarga()
     {
-        return $this->hasOne(AlumniFamily::class);
+        return $this->hasOne(AlumniKeluarga::class);
     }
 
-    public function alumni_academic() 
+    public function alumniAkademik()
     {
-        return $this->hasOne(AlumniAcademic::class);
+        return $this->hasOne(AlumniAkademik::class);
     }
 
-    public function news()
+    public function perusahaanDetail()
     {
-        return $this->hasMany(News::class);
+        return $this->hasOne(PerusahaanDetail::class);
     }
+
+    public function berita()
+    {
+        return $this->hasMany(Berita::class);
+    }
+
+    // public function getRouteKeyName(): string
+    // {
+    //     return 'username';
+    // }
 }

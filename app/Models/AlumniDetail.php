@@ -9,21 +9,7 @@ class AlumniDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'nis',
-        'nisn',
-        'nik',
-        'jk',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'no_handphone',
-        'alamat',
-        'status',
-        'keahlian',
-        'organisasi',
-        'pengalaman_kerja',
-    ];
+    protected $guarded = ['id'];
 
     public function user()
     {

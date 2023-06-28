@@ -21,23 +21,9 @@
                                     id="edit_name">
                             </div>
                             <div class="form-group">
-                                <label for="nis">NIS<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm mr-2" name="nis"
-                                    id="edit_nis">
-                            </div>
-                            <div class="form-group">
-                                <label for="nisn">NISN<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm mr-2" name="nisn"
-                                    id="edit_nisn">
-                            </div>
-                            <div class="form-group">
-                                <label for="nik">NIK<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm mr-2" name="nik"
-                                    id="edit_nik">
-                            </div>
-                            <div class="form-group">
-                                <label for="jk">Jenis Kelamin<span class="text-danger">*</span></label>
-                                <select name="jk" id="edit_jk" class="form-control form-control-sm">
+                                <label for="jenis_kelamin">Jenis Kelamin<span class="text-danger">*</span></label>
+                                <select name="jenis_kelamin" id="edit_jenis_kelamin"
+                                    class="form-control form-control-sm">
                                     <option>---Pilih Jenis Kelamin---</option>
                                     <option value="l">Laki-laki</option>
                                     <option value="p">Perempuan</option>
@@ -54,15 +40,19 @@
                                     id="edit_tanggal_lahir">
                             </div>
                             <div class="form-group">
-                                <label for="alamat">Alamat Lengkap<span class="text-danger">*</span></label>
-                                <textarea class="form-control" name="alamat" id="edit_alamat" rows="4"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="no_handphone">No Handphone<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm mr-2" name="no_handphone"
-                                    id="edit_no_handphone">
+                                <label for="pendidikan_terakhir">Pendidikan Terakhir<span
+                                        class="text-danger">*</span></label>
+                                <select name="pendidikan_terakhir" id="edit_pendidikan_terakhir"
+                                    class="form-control form-control-sm">
+                                    <option selected disabled>Pendidikan Terakhir</option>
+                                    <option value="sma">SMA/Sederajat</option>
+                                    <option value="d1">D1/Sederajat</option>
+                                    <option value="d2">D2/Sederajat</option>
+                                    <option value="d3">D3/Sederajat</option>
+                                    <option value="s1">S1/Sederajat</option>
+                                    <option value="s2">S2/Sederajat</option>
+                                    <option value="s3">S3/Sederajat</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="status">Status Pekerjaan<span class="text-danger">*</span></label>
@@ -71,6 +61,23 @@
                                     <option value="bekerja">Bekerja</option>
                                     <option value="tidakbekerja">Tidak Bekerja</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="alamat">Alamat Lengkap<span class="text-danger">*</span></label>
+                                <textarea class="form-control" name="alamat" id="edit_alamat" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="nik">NIK<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm mr-2" name="nik"
+                                    id="edit_nik">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_pendidikan_lain">Pendidikan Lain<span
+                                        class="text-danger">*</span></label>
+                                <input id="edit_pendidikan_lain" type="hidden" name="pendidikan_lain">
+                                <trix-editor input="edit_pendidikan_lain"></trix-editor>
                             </div>
                             <div class="form-group">
                                 <label for="organisasi">Organisasi<span class="text-danger">*</span></label>
@@ -108,6 +115,11 @@
                                 <input type="text" class="form-control form-control-sm mr-2" name="username"
                                     id="edit_username">
                             </div>
+                            <div class="form-group">
+                                <label for="no_handphone">No Handphone<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm mr-2" name="no_handphone"
+                                    id="edit_no_handphone">
+                            </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -116,6 +128,16 @@
                                     id="edit_email">
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control form-control-sm mr-2" name="nis"
+                            id="edit_nis">
+                    </div>
+                    <div class="form-group">
+                        <label for="nisn">NISN<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control form-control-sm mr-2" name="nisn"
+                            id="edit_nisn">
                     </div>
                     <h5 class="font-weight-bold border-bottom pb-1">Data Keluarga</h5>
                     <div class="row">
@@ -192,4 +214,12 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<?php $__env->startPush('custom-scripts'); ?>
+    <script>
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
+    </script>
+<?php $__env->stopPush(); ?>
 <?php /**PATH C:\laragon\www\web-alumni\resources\views/admin/pages/alumni/component/edit-modal.blade.php ENDPATH**/ ?>
