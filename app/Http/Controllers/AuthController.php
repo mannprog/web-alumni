@@ -16,10 +16,13 @@ class AuthController extends Controller
             'password' => $request->password,
         ];
 
-        Auth::attempt($data);
-        if (Auth::check()) {
-            Auth::user();
-            return redirect()->to('/dashboard');
+        if (Auth::attempt($data)) {
+            Auth::check();
+            if (Auth::user()->is_admin == 0) {
+                return redirect()->to('/dashboard');
+            } else {
+                return redirect()->to('/dashboard-alumni');
+            }
         }
 
         return back()->with('loginError', 'Email atau Password Salah!');

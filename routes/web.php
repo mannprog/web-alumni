@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardAlumniController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PerusahaanController;
@@ -30,16 +31,26 @@ Route::get('/login', function () {
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
-    // Pengaturan User
-    Route::resource('/petugas', PetugasController::class);
-    Route::resource('/alumni', AlumniController::class);
-    Route::resource('/perusahaan', PerusahaanController::class);
+    Route::group(['middleware' => ['role:admin|kepalasekolah|petugas|perusahaan']], function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/profil/{id}', [DashboardController::class, 'profile'])->name('profile');
+        Route::get('/profil/{id}/edit', [DashboardController::class, 'editProfile'])->name('edit-profile');
+        Route::put('/profil/{id}', [DashboardController::class, 'updateProfile'])->name('update-profile');
 
+        // Pengaturan User
+        Route::resource('/petugas', PetugasController::class);
+        Route::resource('/alumni', AlumniController::class);
+        Route::resource('/perusahaan', PerusahaanController::class);
+    });
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/profil/{id}', [DashboardController::class, 'profile'])->name('profile');
-    Route::get('/profil/{id}/edit', [DashboardController::class, 'editProfile'])->name('edit-profile');
-    Route::put('/profil/{id}', [DashboardController::class, 'updateProfile'])->name('update-profile');
+    Route::group(['middleware' => ['role:alumni']], function () {
+        Route::get('/dashboard-alumni', [DashboardAlumniController::class, 'index'])->name('dashboard-alumni');
+        Route::get('/dashboard-alumni/profil/{id}', [DashboardAlumniController::class, 'profile'])->name('profile-alumni');
+        Route::get('/dashboard-alumni/profil/{id}/edit', [DashboardAlumniController::class, 'editProfile'])->name('editProfile-alumni');
+        Route::put('/dashboard-alumni/profil/{id}', [DashboardAlumniController::class, 'updateProfile'])->name('updateProfile-alumni');
+        // Route::resource('/dashboard-alumni/profil', DashboardAlumniController::class);
+    });
+
     Route::resource('/berita', NewsController::class);
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
