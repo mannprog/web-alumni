@@ -1,10 +1,8 @@
-
-
 <?php $__env->startSection('content'); ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">News</h1>
+        <h1 class="h3 mb-0 text-gray-800">Data Berita</h1>
         <button id="createBerita" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-plus fa-sm text-white-50"></i> Add News</button>
+                class="fas fa-plus fa-sm text-white-50"></i> Tambah</button>
     </div>
 
     <div class="card shadow">
@@ -15,7 +13,7 @@
             </div>
         </div>
     </div>
-    <?php echo $__env->make('admin.pages.berita.component.modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('admin.pages.berita.component.add-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('custom-styles'); ?>
@@ -38,6 +36,15 @@
 
     <script>
         $(document).ready(function() {
+            var successMessage = '<?php echo e(session('success')); ?>';
+
+            if (successMessage) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: successMessage,
+                });
+            }
 
             $('#createBerita').click(function() {
                 setTimeout(function() {
@@ -46,53 +53,8 @@
                 $('#saveBtn').removeAttr('disabled');
                 $('#saveBtn').html("Simpan");
                 $('#itemForm').trigger("reset");
-                $('.modal-title').html("Add News");
+                $('.modal-title').html("Tambah Berita");
                 $('#modal-md').modal('show');
-            });
-
-            $('body').on('click', '#editBerita', function() {
-                var berita_id = $(this).data('id');
-                $.get("<?php echo e(route('berita.index')); ?>" + '/' + berita_id + '/edit', function(data) {
-                    $('#modal-md').modal('show');
-                    setTimeout(function() {
-                        $('#judul').focus();
-                    }, 500);
-                    $('.modal-title').html("Change News");
-                    $('#saveBtn').removeAttr('disabled');
-                    $('#saveBtn').html("Simpan");
-                    $('#berita_id').val(data.id);
-                    $('#judul').val(data.judul);
-                    $('#isi').val(data.isi);
-                })
-            });
-
-            $('body').on('click', '.deleteBtn', function(e) {
-                e.preventDefault();
-                var confirmation = confirm("Apakah yakin untuk menghapus?");
-                if (confirmation) {
-                    var berita_id = $(this).data('id');
-                    var formData = new FormData($('#deleteDoc')[0]);
-                    $('.deleteBtn').attr('disabled', 'disabled');
-                    $('.deleteBtn').html('...');
-                    $.ajax({
-                        data: formData,
-                        url: "<?php echo e(route('berita.index')); ?>" + '/' + berita_id,
-                        contentType: false,
-                        processData: false,
-                        type: "POST",
-                        success: function(data) {
-                            $('#deleteDoc').trigger("reset");
-                            $('#berita-table').DataTable().draw();
-                            toastr.success(data.message);
-                        },
-                        error: function(data) {
-                            $('.deleteBtn').removeAttr('disabled');
-                            $('.deleteBtn').html('Hapus');
-                            // toastr.error(data.responseJSON.message)
-                            toastr.error('Tidak bisa hapus data karena sudah digunakan')
-                        }
-                    });
-                }
             });
 
             $('#saveBtn').click(function(e) {
@@ -130,8 +92,37 @@
                     }
                 });
             });
+
+            $('body').on('click', '.deleteBtn', function(e) {
+                e.preventDefault();
+                var confirmation = confirm("Apakah yakin untuk menghapus?");
+                if (confirmation) {
+                    var berita_id = $(this).data('id');
+                    var formData = new FormData($('#deleteDoc')[0]);
+                    $('.deleteBtn').attr('disabled', 'disabled');
+                    $('.deleteBtn').html('...');
+                    $.ajax({
+                        data: formData,
+                        url: "<?php echo e(route('berita.index')); ?>" + '/' + berita_id,
+                        contentType: false,
+                        processData: false,
+                        type: "POST",
+                        success: function(data) {
+                            $('#deleteDoc').trigger("reset");
+                            $('#berita-table').DataTable().draw();
+                            toastr.success(data.message);
+                        },
+                        error: function(data) {
+                            $('.deleteBtn').removeAttr('disabled');
+                            $('.deleteBtn').html('Hapus');
+                            // toastr.error(data.responseJSON.message)
+                            toastr.error('Tidak bisa hapus data karena sudah digunakan')
+                        }
+                    });
+                }
+            });
         });
     </script>
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('admin.layouts.app', ['title' => 'News'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\web-alumni\resources\views/admin/pages/berita/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.layouts.app', ['title' => 'Berita'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\web-alumni\resources\views/admin/pages/berita/index.blade.php ENDPATH**/ ?>

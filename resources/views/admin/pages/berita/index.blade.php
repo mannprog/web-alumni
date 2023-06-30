@@ -1,10 +1,10 @@
-@extends('admin.layouts.app', ['title' => 'News'])
+@extends('admin.layouts.app', ['title' => 'Berita'])
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">News</h1>
-        <button id="createNews" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-plus fa-sm text-white-50"></i> Add News</button>
+        <h1 class="h3 mb-0 text-gray-800">Data Berita</h1>
+        <button id="createBerita" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-plus fa-sm text-white-50"></i> Tambah</button>
     </div>
 
     <div class="card shadow">
@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    @include('admin.pages.news.component.modal')
+    @include('admin.pages.berita.component.add-modal')
 @endsection
 
 @push('custom-styles')
@@ -36,8 +36,17 @@
 
     <script>
         $(document).ready(function() {
+            var successMessage = '{{ session('success') }}';
 
-            $('#createNews').click(function() {
+            if (successMessage) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: successMessage,
+                });
+            }
+
+            $('#createBerita').click(function() {
                 setTimeout(function() {
                     $('#judul').focus();
                 }, 500);
@@ -46,51 +55,6 @@
                 $('#itemForm').trigger("reset");
                 $('.modal-title').html("Tambah Berita");
                 $('#modal-md').modal('show');
-            });
-
-            $('body').on('click', '#editBerita', function() {
-                var news_id = $(this).data('id');
-                $.get("{{ route('berita.index') }}" + '/' + news_id + '/edit', function(data) {
-                    $('#modal-md').modal('show');
-                    setTimeout(function() {
-                        $('#judul').focus();
-                    }, 500);
-                    $('.modal-title').html("Ubah Berita");
-                    $('#saveBtn').removeAttr('disabled');
-                    $('#saveBtn').html("Simpan");
-                    $('#news_id').val(data.id);
-                    $('#judul').val(data.judul);
-                    $('#isi').val(data.isi);
-                })
-            });
-
-            $('body').on('click', '.deleteBtn', function(e) {
-                e.preventDefault();
-                var confirmation = confirm("Apakah yakin untuk menghapus?");
-                if (confirmation) {
-                    var news_id = $(this).data('id');
-                    var formData = new FormData($('#deleteDoc')[0]);
-                    $('.deleteBtn').attr('disabled', 'disabled');
-                    $('.deleteBtn').html('...');
-                    $.ajax({
-                        data: formData,
-                        url: "{{ route('berita.index') }}" + '/' + news_id,
-                        contentType: false,
-                        processData: false,
-                        type: "POST",
-                        success: function(data) {
-                            $('#deleteDoc').trigger("reset");
-                            $('#berita-table').DataTable().draw();
-                            toastr.success(data.message);
-                        },
-                        error: function(data) {
-                            $('.deleteBtn').removeAttr('disabled');
-                            $('.deleteBtn').html('Hapus');
-                            // toastr.error(data.responseJSON.message)
-                            toastr.error('Tidak bisa hapus data karena sudah digunakan')
-                        }
-                    });
-                }
             });
 
             $('#saveBtn').click(function(e) {
@@ -127,6 +91,35 @@
                         });
                     }
                 });
+            });
+
+            $('body').on('click', '.deleteBtn', function(e) {
+                e.preventDefault();
+                var confirmation = confirm("Apakah yakin untuk menghapus?");
+                if (confirmation) {
+                    var berita_id = $(this).data('id');
+                    var formData = new FormData($('#deleteDoc')[0]);
+                    $('.deleteBtn').attr('disabled', 'disabled');
+                    $('.deleteBtn').html('...');
+                    $.ajax({
+                        data: formData,
+                        url: "{{ route('berita.index') }}" + '/' + berita_id,
+                        contentType: false,
+                        processData: false,
+                        type: "POST",
+                        success: function(data) {
+                            $('#deleteDoc').trigger("reset");
+                            $('#berita-table').DataTable().draw();
+                            toastr.success(data.message);
+                        },
+                        error: function(data) {
+                            $('.deleteBtn').removeAttr('disabled');
+                            $('.deleteBtn').html('Hapus');
+                            // toastr.error(data.responseJSON.message)
+                            toastr.error('Tidak bisa hapus data karena sudah digunakan')
+                        }
+                    });
+                }
             });
         });
     </script>

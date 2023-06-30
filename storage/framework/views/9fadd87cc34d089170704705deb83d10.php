@@ -71,7 +71,7 @@
     </div>
     <div class="col-7">
         <?php if($alumni->alumniKeluarga->alamat_ortu): ?>
-            <?php echo e($alumni->alumniKeluarga->alamat_ortu); ?>
+            <?php echo $alumni->alumniKeluarga->alamat_ortu; ?>
 
         <?php else: ?>
             -

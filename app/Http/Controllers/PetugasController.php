@@ -120,20 +120,20 @@ class PetugasController extends Controller
                     'facebook' => 'required',
                     'instagram' => 'required',
                     'twitter' => 'required',
-                    'foto' => 'required|mimes:png,jpg,jpeg,svg|max:1048',
+                    'foto' => 'sometimes|mimes:png,jpg,jpeg,svg|max:1048',
                     'role' => 'required',
                 ];
-
-                if ($foto = request('foto')) {
-                    $filename = $foto->getClientOriginalName();
-                    $foto->move(public_path('img/foto'), $filename);
-                }
 
                 $user = User::findOrFail($petugas_id);
                 $user->name = request('name');
                 $user->email = request('email');
                 $user->username = request('username');
-                $user->foto = $filename;
+                if (request()->hasFile('foto')) {
+                    $foto = request()->file('foto');
+                    $filename = $foto->getClientOriginalName();
+                    $foto->move(public_path('img/foto'), $filename);
+                    $user->foto = $filename;
+                }
                 (request('role')) ? $user->syncRoles(request('role')) : 'Berarti bukan civitas';
                 $user->save();
 

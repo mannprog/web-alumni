@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardAlumniController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PetugasController;
 use Illuminate\Support\Facades\Route;
@@ -37,10 +37,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/profil/{id}/edit', [DashboardController::class, 'editProfile'])->name('edit-profile');
         Route::put('/profil/{id}', [DashboardController::class, 'updateProfile'])->name('update-profile');
 
+        Route::resource('/dashboard/berita', BeritaController::class);
+
         // Pengaturan User
-        Route::resource('/petugas', PetugasController::class);
-        Route::resource('/alumni', AlumniController::class);
-        Route::resource('/perusahaan', PerusahaanController::class);
+        Route::resource('/dashboard/petugas', PetugasController::class);
+        Route::resource('/dashboard/alumni', AlumniController::class);
+        Route::resource('/dashboard/perusahaan', PerusahaanController::class);
     });
 
     Route::group(['middleware' => ['role:alumni']], function () {
@@ -51,6 +53,5 @@ Route::middleware(['auth'])->group(function () {
         // Route::resource('/dashboard-alumni/profil', DashboardAlumniController::class);
     });
 
-    Route::resource('/berita', NewsController::class);
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

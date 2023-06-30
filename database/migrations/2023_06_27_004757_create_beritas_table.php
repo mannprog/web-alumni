@@ -16,7 +16,9 @@ return new class extends Migration {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->string('judul');
             $table->string('slug');
+            $table->text('kutipan');
             $table->text('isi');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

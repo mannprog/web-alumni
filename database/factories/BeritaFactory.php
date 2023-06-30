@@ -20,9 +20,10 @@ class BeritaFactory extends Factory
 
         return [
             'user_id' => 3,
-            'judul' => $judul,
-            'slug' => $judul,
-            'isi' => fake('id_ID')->text(500),
+            'judul' => $this->faker->sentence(mt_rand(2, 8)),
+            'slug' => $this->faker->slug(),
+            'kutipan' => $this->faker->paragraph(),
+            'isi' => $this->faker->paragraph(mt_rand(10, 20)),
         ];
     }
 }

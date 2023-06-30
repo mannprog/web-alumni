@@ -136,7 +136,7 @@ class AlumniController extends Controller
                     'keahlian' => 'required',
                     'organisasi' => 'required',
                     'pengalaman_kerja' => 'required',
-                    'foto' => 'required|mimes:png,jpg,jpeg,svg|max:1048',
+                    'foto' => 'sometimes|mimes:png,jpg,jpeg,svg|max:1048',
                     'no_handphone' => 'required',
                     'facebook' => 'required',
                     'instagram' => 'required',
@@ -156,17 +156,16 @@ class AlumniController extends Controller
                     'alamat_ortu' => 'required|string',
                 ];
 
-                if ($foto = request('foto')) {
-                    $filename = $foto->getClientOriginalName();
-                    $foto->move(public_path('img/foto'), $filename);
-                    $validated['foto'] = $filename;
-                }
-
                 $user = User::findOrFail($id);
                 $user->name = request('name');
                 $user->email = request('email');
                 $user->username = request('username');
-                $user->foto = $filename;
+                if (request()->hasFile('foto')) {
+                    $foto = request()->file('foto');
+                    $filename = $foto->getClientOriginalName();
+                    $foto->move(public_path('img/foto'), $filename);
+                    $user->foto = $filename;
+                }
                 $user->save();
 
                 $alumniDetail = AlumniDetail::where('user_id', $user->id)->first();

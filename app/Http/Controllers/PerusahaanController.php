@@ -89,7 +89,7 @@ class PerusahaanController extends Controller
                     'name' => 'required|string',
                     'username' => 'required|string',
                     'email' => 'required|email',
-                    'foto' => 'required|mimes:png,jpg,jpeg,svg|max:1048',
+                    'foto' => 'sometimes|mimes:png,jpg,jpeg,svg|max:1048',
                     'jenis' => 'required|string',
                     'alamat' => 'required|string|max:255',
                     'no_handphone' => 'required|string|max:13',
@@ -98,17 +98,16 @@ class PerusahaanController extends Controller
                     'twitter' => 'required',
                 ];
 
-                if ($foto = request('foto')) {
-                    $filename = $foto->getClientOriginalName();
-                    $foto->move(public_path('img/foto'), $filename);
-                    $validated['foto'] = $filename;
-                }
-
                 $user = User::findOrFail($perusahaan_id);
                 $user->name = request('name');
                 $user->email = request('email');
                 $user->username = request('username');
-                $user->foto = $filename;
+                if (request()->hasFile('foto')) {
+                    $foto = request()->file('foto');
+                    $filename = $foto->getClientOriginalName();
+                    $foto->move(public_path('img/foto'), $filename);
+                    $user->foto = $filename;
+                }
                 $user->save();
 
                 $perusahaanDetail = PerusahaanDetail::where('user_id', $user->id)->first();
