@@ -77,6 +77,11 @@ class User extends Authenticatable
         return $this->hasMany(Berita::class);
     }
 
+    public function loker()
+    {
+        return $this->hasMany(Loker::class);
+    }
+
     // public function getRouteKeyName(): string
     // {
     //     return 'username';

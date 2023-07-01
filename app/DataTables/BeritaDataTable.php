@@ -12,6 +12,7 @@ use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 
 class BeritaDataTable extends DataTable
 {
@@ -41,7 +42,9 @@ class BeritaDataTable extends DataTable
      */
     public function query(Berita $model): QueryBuilder
     {
+        $userId = Auth::id();
         return $model->newQuery()
+            ->where('user_id', $userId)
             ->with('user');
     }
 
