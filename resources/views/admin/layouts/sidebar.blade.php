@@ -26,8 +26,8 @@
         </a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link">
+    <li class="nav-item  {{ Route::is('loker*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('loker.index') }}">
             <i class="fas fa-fw fa-suitcase"></i>
             <span>Lowongan</span>
         </a>

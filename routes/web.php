@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardAlumniController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LokerController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PetugasController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/profil/{id}', [DashboardController::class, 'updateProfile'])->name('update-profile');
 
         Route::resource('/dashboard/berita', BeritaController::class);
+        Route::resource('/dashboard/loker', LokerController::class);
 
         // Pengaturan User
         Route::resource('/dashboard/petugas', PetugasController::class);
