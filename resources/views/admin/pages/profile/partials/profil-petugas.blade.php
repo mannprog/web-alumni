@@ -103,7 +103,8 @@
                     :
                 </div>
                 <div class="col-7">
-                    {{ $user->petugasDetail->tempat_lahir }}, {{ $user->petugasDetail->tanggal_lahir }}
+                    {{ $user->petugasDetail->tempat_lahir }},
+                    {{ \Carbon\Carbon::parse($user->petugasDetail->tanggal_lahir)->format('d M Y') }}
                 </div>
             </div>
             <div class="row align-items-center">

@@ -107,7 +107,8 @@
                     :
                 </div>
                 <div class="col-7">
-                    <?php echo e($user->petugasDetail->tempat_lahir); ?>, <?php echo e($user->petugasDetail->tanggal_lahir); ?>
+                    <?php echo e($user->petugasDetail->tempat_lahir); ?>,
+                    <?php echo e(\Carbon\Carbon::parse($user->petugasDetail->tanggal_lahir)->format('d M Y')); ?>
 
                 </div>
             </div>

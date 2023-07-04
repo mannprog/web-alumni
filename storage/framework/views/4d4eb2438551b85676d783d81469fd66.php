@@ -39,7 +39,8 @@
         :
     </div>
     <div class="col-7">
-        <?php echo e($user->alumniDetail->tempat_lahir); ?>, <?php echo e($user->alumniDetail->tanggal_lahir); ?>
+        <?php echo e($user->alumniDetail->tempat_lahir); ?>,
+        <?php echo e(\Carbon\Carbon::parse($user->alumniDetail->tanggal_lahir)->format('d M Y')); ?>
 
     </div>
 </div>

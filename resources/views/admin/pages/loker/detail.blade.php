@@ -31,7 +31,7 @@
                             <p class="card-text">:</p>
                         </div>
                         <div class="col-7 col-lg-9">
-                            @if ($loker->lokasi === 0)
+                            @if ($loker->is_active === 0)
                                 <p class="card-text text-justify">Lowongan masih berlangsung</p>
                             @else
                                 <p class="card-text text-justify">Lowongan sudah ditutup</p>
@@ -46,7 +46,7 @@
                             <p class="card-text">:</p>
                         </div>
                         <div class="col-7 col-lg-9">
-                            <p class="card-text text-justify">{!! $loker->lokasi !!}</p>
+                            <p class="card-text text-justify">{{ $loker->lokasi }}</p>
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -57,7 +57,8 @@
                             <p class="card-text">:</p>
                         </div>
                         <div class="col-7 col-lg-9">
-                            <p class="card-text text-justify">{!! $loker->tanggal_mulai !!}</p>
+                            <p class="card-text text-justify">
+                                {{ \Carbon\Carbon::parse($loker->tanggal_mulai)->format('d M Y') }}</p>
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -68,7 +69,8 @@
                             <p class="card-text">:</p>
                         </div>
                         <div class="col-7 col-lg-9">
-                            <p class="card-text text-justify">{!! $loker->tanggal_akhir !!}</p>
+                            <p class="card-text text-justify">
+                                {{ \Carbon\Carbon::parse($loker->tanggal_akhir)->format('d M Y') }}</p>
                         </div>
                     </div>
                     <div class="row align-items-center">

@@ -38,7 +38,11 @@
         :
     </div>
     <div class="col-7">
-        {{ $alumni->alumniDetail->tempat_lahir }}, {{ $alumni->alumniDetail->tanggal_lahir }}
+        {{ $alumni->alumniDetail->tempat_lahir }},
+        @if ($alumni->alumniDetail->tanggal_lahir)
+            {{ \Carbon\Carbon::parse($alumni->alumniDetail->tanggal_lahir)->format('d M Y') }}
+        @else
+        @endif
     </div>
 </div>
 <div class="row align-items-center">

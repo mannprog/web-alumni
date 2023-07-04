@@ -29,10 +29,10 @@ class BeritaDataTable extends DataTable
                 return view('admin.pages.berita.component.action', compact('row'))->render();
             })
             ->addColumn('created_at_formatted', function ($row) {
-                return Carbon::parse($row->created_at)->format('d-m-Y H:i:s');
+                return Carbon::parse($row->created_at)->format('d M Y H:i');
             })
             ->addColumn('updated_at_formatted', function ($row) {
-                return Carbon::parse($row->updated_at)->format('d-m-Y H:i:s');
+                return Carbon::parse($row->updated_at)->format('d M Y H:i');
             })
             ->rawColumns(['action']);
     }

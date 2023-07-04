@@ -12,15 +12,59 @@
                 @csrf
                 <input type="hidden" name="berita_id" id="berita_id">
                 <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="kategori_id">Kategori<span class="text-danger">*</span></label>
+                                <select name="kategori_id" id="kategori_id" class="form-control form-control-sm">
+                                    <option selected disabled>---Pilih Kategori---</option>
+                                    @foreach ($loker as $kategori)
+                                        <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="is_active">Status<span class="text-danger">*</span></label>
+                                <select name="is_active" id="is_active" class="form-control form-control-sm">
+                                    <option selected disabled>---Pilih Status---</option>
+                                    <option value="0">Aktif</option>
+                                    <option value="1">Nonaktif</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label for="judul">Judul<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control form-control-sm mr-2" name="judul" id="judul"
+                        <label for="nama">Nama<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control form-control-sm mr-2" name="nama" id="nama"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lokasi">Lokasi<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control form-control-sm mr-2" name="lokasi" id="lokasi"
                             required>
                     </div>
                     <div class="form-group">
                         <label for="isi">Isi<span class="text-danger">*</span></label>
                         <input id="isi" type="hidden" name="isi">
                         <trix-editor input="isi"></trix-editor>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="tanggal_mulai">Tanggal Mulai<span class="text-danger">*</span></label>
+                                <input type="date" class="form-control form-control-sm mr-2" name="tanggal_mulai"
+                                    id="tanggal_mulai" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="tanggal_akhir">Tanggal Akhir<span class="text-danger">*</span></label>
+                                <input type="date" class="form-control form-control-sm mr-2" name="tanggal_akhir"
+                                    id="tanggal_akhir" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="foto">Foto</label>

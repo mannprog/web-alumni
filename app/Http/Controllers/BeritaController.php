@@ -85,7 +85,7 @@ class BeritaController extends Controller
         $berita = Berita::where('slug', $slug)->first();
 
         if (!$berita) {
-            abort(404); // Jika berita dengan slug tersebut tidak ditemukan, tampilkan halaman 404
+            abort(404);
         }
 
         return view('admin.pages.berita.component.edit', compact('berita'));

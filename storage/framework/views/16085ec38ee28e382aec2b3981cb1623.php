@@ -90,10 +90,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="foto">Foto<span class="text-danger">*</span></label>
+                            <label for="foto">Foto</label>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="foto" name="foto" required>
+                                    <input type="file" class="custom-file-input" id="foto" name="foto">
                                     <label class="custom-file-label" for="foto">Choose file</label>
                                 </div>
                             </div>

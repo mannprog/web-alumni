@@ -29,10 +29,10 @@ class LokerDataTable extends DataTable
                 return view('admin.pages.loker.component.action', compact('row'))->render();
             })
             ->addColumn('tanggal_mulai_formatted', function ($row) {
-                return Carbon::parse($row->tanggal_mulai)->format('d-m-Y');
+                return Carbon::parse($row->tanggal_mulai)->format('d M Y');
             })
             ->addColumn('tanggal_akhir_formatted', function ($row) {
-                return Carbon::parse($row->tanggal_akhir)->format('d-m-Y');
+                return Carbon::parse($row->tanggal_akhir)->format('d M Y');
             })
             ->rawColumns(['action']);
     }

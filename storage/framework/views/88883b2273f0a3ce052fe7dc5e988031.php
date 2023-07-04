@@ -115,7 +115,8 @@
                                 :
                             </div>
                             <div class="col-7">
-                                <?php echo e($petugas->petugasDetail->tempat_lahir); ?>, <?php echo e($petugas->petugasDetail->tanggal_lahir); ?>
+                                <?php echo e($petugas->petugasDetail->tempat_lahir); ?>,
+                                <?php echo e(\Carbon\Carbon::parse($petugas->petugasDetail->tanggal_lahir)->format('d M Y')); ?>
 
                             </div>
                         </div>
