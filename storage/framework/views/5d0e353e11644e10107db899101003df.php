@@ -15,57 +15,72 @@
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item <?php echo e(Route::is('berita*') ? 'active' : ''); ?>">
-        <a class="nav-link" href="<?php echo e(route('berita.index')); ?>">
-            <i class="fas fa-fw fa-newspaper"></i>
-            <span>Berita</span>
-        </a>
-    </li>
+    <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'admin|petugas|kepalasekolah')): ?>
+        <li class="nav-item <?php echo e(Route::is('berita*') ? 'active' : ''); ?>">
+            <a class="nav-link" href="<?php echo e(route('berita.index')); ?>">
+                <i class="fas fa-fw fa-newspaper"></i>
+                <span>Berita</span>
+            </a>
+        </li>
+    <?php endif; ?>
 
-    <li class="nav-item  <?php echo e(Route::is('loker*') ? 'active' : ''); ?>">
-        <a class="nav-link" href="<?php echo e(route('loker.index')); ?>">
-            <i class="fas fa-fw fa-suitcase"></i>
-            <span>Lowongan</span>
-        </a>
-    </li>
+    <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'perusahaan')): ?>
+        <li class="nav-item  <?php echo e(Route::is('loker*') ? 'active' : ''); ?>">
+            <a class="nav-link" href="<?php echo e(route('loker.index')); ?>">
+                <i class="fas fa-fw fa-suitcase"></i>
+                <span>Lowongan</span>
+            </a>
+        </li>
 
-    <li class="nav-item">
-        <a class="nav-link">
-            <i class="fas fa-fw fa-user-graduate"></i>
-            <span>Alumni</span>
-        </a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link">
+                <i class="fas fa-fw fa-user-graduate"></i>
+                <span>Alumni</span>
+            </a>
+        </li>
+    <?php endif; ?>
 
-    <li class="nav-item">
-        <a class="nav-link">
-            <i class="fas fa-fw fa-file-alt"></i>
-            <span>Laporan</span>
-        </a>
-    </li>
+    <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'admin|kepalasekolah')): ?>
+        <li class="nav-item">
+            <a class="nav-link">
+                <i class="fas fa-fw fa-file-alt"></i>
+                <span>Laporan</span>
+            </a>
+        </li>
+    <?php endif; ?>
 
-    <hr class="sidebar-divider">
+    <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'admin|petugas|kepalasekolah')): ?>
+        <hr class="sidebar-divider">
 
-    <div class="sidebar-heading">
-        Pengaturan
-    </div>
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-            aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Users</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item <?php echo e(Route::is('petugas*') ? 'active' : ''); ?>"
-                    href="<?php echo e(route('petugas.index')); ?>">Petugas</a>
-                <a class="collapse-item <?php echo e(Route::is('alumni*') ? 'active' : ''); ?>"
-                    href="<?php echo e(route('alumni.index')); ?>">Alumni</a>
-                <a class="collapse-item <?php echo e(Route::is('perusahaan*') ? 'active' : ''); ?>"
-                    href="<?php echo e(route('perusahaan.index')); ?>">Perusahaan</a>
-            </div>
+        <div class="sidebar-heading">
+            Pengaturan
         </div>
-    </li>
+
+        <li class="nav-item  <?php echo e(Route::is('kategori*') ? 'active' : ''); ?>">
+            <a class="nav-link" href="<?php echo e(route('kategori.index')); ?>">
+                <i class="fas fa-fw fa-th-large"></i>
+                <span>Kategori</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Users</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item <?php echo e(Route::is('petugas*') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('petugas.index')); ?>">Petugas</a>
+                    <a class="collapse-item <?php echo e(Route::is('alumni*') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('alumni.index')); ?>">Alumni</a>
+                    <a class="collapse-item <?php echo e(Route::is('perusahaan*') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('perusahaan.index')); ?>">Perusahaan</a>
+                </div>
+            </div>
+        </li>
+    <?php endif; ?>
 
     <hr class="sidebar-divider d-none d-md-block">
 

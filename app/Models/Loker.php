@@ -35,4 +35,9 @@ class Loker extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function lamaran()
+    {
+        return $this->hasMany(Lamaran::class);
+    }
 }

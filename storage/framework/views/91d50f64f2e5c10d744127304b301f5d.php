@@ -9,14 +9,34 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-                <li><a class="nav-link scrollto" href="#team">Team</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                <li><a class="nav-link scrollto" href="<?php echo e(route('auth')); ?>">Login</a></li>
-                
+                <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
+                <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
+                <li><a class="nav-link scrollto" href="#services">Berita</a></li>
+                <li><a class="nav-link scrollto " href="#portfolio">Lowongan</a></li>
+                <li><a class="nav-link scrollto" href="#team">Alumni</a></li>
+                <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
+                <?php if(Route::has('login')): ?>
+                    <?php if(auth()->guard()->check()): ?>
+                        <?php if(Auth::user()->is_admin == 0): ?>
+                            <li class="dropdown"><a href="#"><span><?php echo e(auth()->user()->name); ?></span> <i
+                                        class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="<?php echo e(route('dashboard')); ?>">Dashboard</a></li>
+                                    
+                                </ul>
+                            </li>
+                        <?php else: ?>
+                            <li class="dropdown"><a href="#"><span><?php echo e(auth()->user()->name); ?></span> <i
+                                        class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="<?php echo e(route('dashboard-alumni')); ?>">Dashboard</a></li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <li><a class="nav-link scrollto" href="<?php echo e(route('auth')); ?>">Login</a></li>
+                    <?php endif; ?>
+                <?php endif; ?>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->

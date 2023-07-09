@@ -7,8 +7,8 @@
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item <?php echo e(Route::is('dashboard') ? 'active' : ''); ?>">
-        <a class="nav-link" href="<?php echo e(route('dashboard')); ?>">
+    <li class="nav-item <?php echo e(Route::is('dashboard-alumni') ? 'active' : ''); ?>">
+        <a class="nav-link" href="<?php echo e(route('dashboard-alumni')); ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>

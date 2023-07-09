@@ -3,8 +3,10 @@
 @section('content')
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Data Petugas</h1>
-        <button id="createData" class="btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i>
-            Tambah</button>
+        @role('admin')
+            <button id="createData" class="btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i>
+                Tambah</button>
+        @endrole
     </div>
 
     <div class="card shadow">

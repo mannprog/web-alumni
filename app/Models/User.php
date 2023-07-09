@@ -82,6 +82,11 @@ class User extends Authenticatable
         return $this->hasMany(Loker::class);
     }
 
+    public function lamaran()
+    {
+        return $this->hasMany(Lamaran::class);
+    }
+
     // public function getRouteKeyName(): string
     // {
     //     return 'username';

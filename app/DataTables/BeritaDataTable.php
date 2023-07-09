@@ -44,7 +44,7 @@ class BeritaDataTable extends DataTable
     {
         $userId = Auth::id();
         return $model->newQuery()
-            ->where('user_id', $userId)
+            // ->where('user_id', $userId)
             ->with('user');
     }
 

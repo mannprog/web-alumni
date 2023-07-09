@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardAlumniController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PetugasController;
@@ -41,7 +42,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/dashboard/berita', BeritaController::class);
         Route::resource('/dashboard/loker', LokerController::class);
 
-        // Pengaturan User
+        // Pengaturan
+        Route::resource('/dashboard/kategori', KategoriController::class);
         Route::resource('/dashboard/petugas', PetugasController::class);
         Route::resource('/dashboard/alumni', AlumniController::class);
         Route::resource('/dashboard/perusahaan', PerusahaanController::class);

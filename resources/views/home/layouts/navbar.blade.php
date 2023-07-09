@@ -9,30 +9,43 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-                <li><a class="nav-link scrollto" href="#team">Team</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                <li><a class="nav-link scrollto" href="{{ route('auth') }}">Login</a></li>
-                {{-- <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="#">Login Admin Sekolah</a></li>
-                        <li><a href="#">Login Alumni</a></li>
-                        <li><a href="#">Login Perusahaan</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                                    class="bi bi-chevron-right"></i></a>
-                            <ul>
-                                <li><a href="#">Deep Drop Down 1</a></li>
-                                <li><a href="#">Deep Drop Down 2</a></li>
-                                <li><a href="#">Deep Drop Down 3</a></li>
-                                <li><a href="#">Deep Drop Down 4</a></li>
-                                <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li> --}}
+                <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
+                <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
+                <li><a class="nav-link scrollto" href="#services">Berita</a></li>
+                <li><a class="nav-link scrollto " href="#portfolio">Lowongan</a></li>
+                <li><a class="nav-link scrollto" href="#team">Alumni</a></li>
+                <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
+                @if (Route::has('login'))
+                    @auth
+                        @if (Auth::user()->is_admin == 0)
+                            <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
+                                        class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                    {{-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
+                                            class="bi bi-chevron-right"></i></a>
+                                    <ul>
+                                        <li><a href="#">Deep Drop Down 1</a></li>
+                                        <li><a href="#">Deep Drop Down 2</a></li>
+                                        <li><a href="#">Deep Drop Down 3</a></li>
+                                        <li><a href="#">Deep Drop Down 4</a></li>
+                                        <li><a href="#">Deep Drop Down 5</a></li>
+                                    </ul>
+                                </li> --}}
+                                </ul>
+                            </li>
+                        @else
+                            <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
+                                        class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="{{ route('dashboard-alumni') }}">Dashboard</a></li>
+                                </ul>
+                            </li>
+                        @endif
+                    @else
+                        <li><a class="nav-link scrollto" href="{{ route('auth') }}">Login</a></li>
+                    @endauth
+                @endif
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
