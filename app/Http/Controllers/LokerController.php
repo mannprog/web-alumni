@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 use App\DataTables\LokerDataTable;
+use App\Models\Lamaran;
 use Illuminate\Support\Facades\DB;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -85,7 +86,9 @@ class LokerController extends Controller
             abort(404);
         }
 
-        return view('admin.pages.loker.detail', compact('loker'));
+        $lamaran = Lamaran::where('loker_id', $loker->id)->get();
+
+        return view('admin.pages.loker.detail', compact('loker', 'lamaran'));
     }
 
     /**
@@ -170,5 +173,39 @@ class LokerController extends Controller
         return response()->json([
             'message' => 'Lowongan kerja berhasil dihapus',
         ]);
+    }
+
+    public function rejectLamaran($id)
+    {
+        try {
+            DB::transaction(function () use ($id) {
+
+                $lamaran = Lamaran::findOrFail($id);
+                $lamaran->is_accept = 1;
+                $lamaran->save();
+            });
+        } catch (InvalidArgumentException $e) {
+            $message = $e->getMessage();
+            return redirect()->back()->with('message', $message);
+        }
+
+        return redirect()->back()->with('message', 'Pelamar berhasil ditolak');
+    }
+
+    public function acceptLamaran($id)
+    {
+        try {
+            DB::transaction(function () use ($id) {
+
+                $lamaran = Lamaran::findOrFail($id);
+                $lamaran->is_accept = 0;
+                $lamaran->save();
+            });
+        } catch (InvalidArgumentException $e) {
+            $message = $e->getMessage();
+            return redirect()->back()->with('message', $message);
+        }
+
+        return redirect()->back()->with('message', 'Pelamar berhasil disetujui');
     }
 }

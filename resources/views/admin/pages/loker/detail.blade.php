@@ -92,4 +92,88 @@
     <div class="d-flex align-items-center justify-content-between my-4">
         <h1 class="h3 mb-0 text-gray-800">Daftar Pelamar - {{ $loker->nama }}</h1>
     </div>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Pelamar</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if ($lamaran->isEmpty())
+                            <tr>
+                                <td colspan="5" class="text-center">Tidak ada pelamar yang melamar dalam lowongan ini.
+                                </td>
+                            </tr>
+                        @else
+                            @foreach ($lamaran as $lamar)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $lamar->user->name }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($lamar->tanggal_lamaran)->format('d M Y') }}</td>
+                                    <td>
+                                        @if ($lamar->is_accept === null)
+                                            Belum ditentukan
+                                        @else
+                                            @if ($lamar->is_accept === 0)
+                                                Disetujui
+                                            @else
+                                                Ditolak
+                                            @endif
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('alumni.show', $lamar->user_id) }}"
+                                            class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                        @if ($lamar->is_accept === null)
+                                            <a href="#" class="btn btn-sm btn-info" data-toggle="modal"
+                                                data-target="#accModal"><i class="fas fa-check"></i></a>
+                                            <a href="#" class="btn btn-sm btn-danger" data-toggle="modal"
+                                                data-target="#rejModal"><i class="fas fa-times"></i></a>
+                                        @else
+                                            @if ($lamar->is_accept === 0)
+                                                <a href="#" class="btn btn-sm btn-danger" data-toggle="modal"
+                                                    data-target="#rejModal"><i class="fas fa-times"></i></a>
+                                            @else
+                                                <a href="#" class="btn btn-sm btn-info" data-toggle="modal"
+                                                    data-target="#accModal"><i class="fas fa-check"></i></a>
+                                            @endif
+                                        @endif
+                                    </td>
+                                </tr>
+
+                                @include('admin.pages.loker.component.accOrRej')
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection
+
+@push('custom-scripts')
+    <script src="{{ asset('library/http_cdn.datatables.net_1.13.4_js_jquery.dataTables.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            var successMessage = '{{ session('success') }}';
+
+            if (successMessage) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: successMessage,
+                });
+            }
+
+        });
+    </script>
+@endpush

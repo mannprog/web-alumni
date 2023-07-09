@@ -21,7 +21,8 @@
                     <tbody>
                         @if ($lowongan->isEmpty())
                             <tr>
-                                <td colspan="4">Tidak ada lowongan yang tersedia dalam kategori ini.</td>
+                                <td colspan="4" class="text-center">Tidak ada lowongan yang tersedia dalam kategori ini.
+                                </td>
                             </tr>
                         @else
                             @foreach ($lowongan as $loker)

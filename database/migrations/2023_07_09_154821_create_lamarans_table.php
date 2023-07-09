@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('loker_id');
             $table->foreign('loker_id')->references('id')->on('lokers')->onDelete('restrict');
             $table->date('tanggal_lamaran')->default(now()->toDateString());
+            $table->boolean('is_accept')->nullable();
             $table->timestamps();
         });
     }

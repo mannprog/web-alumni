@@ -39,14 +39,21 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/profil/{id}/edit', [DashboardController::class, 'editProfile'])->name('edit-profile');
         Route::put('/profil/{id}', [DashboardController::class, 'updateProfile'])->name('update-profile');
 
-        Route::resource('/dashboard/berita', BeritaController::class);
-        Route::resource('/dashboard/loker', LokerController::class);
+        Route::group(['middleware' => ['role:perusahaan']], function () {
+            Route::resource('/dashboard/loker', LokerController::class);
+            Route::post('/dashboard/lamaran/{id}/accept', [LokerController::class, 'acceptLamaran'])->name('lamaran.accept');
+            Route::post('/dashboard/lamaran/{id}/reject', [LokerController::class, 'rejectLamaran'])->name('lamaran.reject');
+        });
 
-        // Pengaturan
-        Route::resource('/dashboard/kategori', KategoriController::class);
-        Route::resource('/dashboard/petugas', PetugasController::class);
-        Route::resource('/dashboard/alumni', AlumniController::class);
-        Route::resource('/dashboard/perusahaan', PerusahaanController::class);
+        Route::group(['middleware' => ['role:admin|kepalasekolah|petugas']], function () {
+            Route::resource('/dashboard/berita', BeritaController::class);
+
+            // Pengaturan
+            Route::resource('/dashboard/kategori', KategoriController::class);
+            Route::resource('/dashboard/petugas', PetugasController::class);
+            Route::resource('/dashboard/alumni', AlumniController::class);
+            Route::resource('/dashboard/perusahaan', PerusahaanController::class);
+        });
     });
 
     Route::group(['middleware' => ['role:alumni']], function () {
