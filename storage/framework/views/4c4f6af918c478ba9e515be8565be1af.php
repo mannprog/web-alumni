@@ -15,10 +15,10 @@
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item <?php echo e(Route::is('berita*') ? 'active' : ''); ?>">
-        <a class="nav-link" href="<?php echo e(route('berita.index')); ?>">
-            <i class="fas fa-fw fa-newspaper"></i>
-            <span>Berita</span>
+    <li class="nav-item <?php echo e(Route::is('alumnus*') ? 'active' : ''); ?>">
+        <a class="nav-link" href="<?php echo e(route('alumnus.index')); ?>">
+            <i class="fas fa-fw fa-user-graduate"></i>
+            <span>Alumni</span>
         </a>
     </li>
 
@@ -29,10 +29,10 @@
         </a>
     </li>
 
-    <li class="nav-item <?php echo e(Route::is('alumnus*') ? 'active' : ''); ?>">
-        <a class="nav-link" href="<?php echo e(route('alumnus.index')); ?>">
-            <i class="fas fa-fw fa-user-graduate"></i>
-            <span>Alumni</span>
+    <li class="nav-item <?php echo e(Route::is('lamaran*') ? 'active' : ''); ?>">
+        <a class="nav-link" href="<?php echo e(route('lamaran.index')); ?>">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Lamaran</span>
         </a>
     </li>
 

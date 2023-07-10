@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\LamaranDataTable;
 use App\Models\Loker;
 use App\Models\Lamaran;
 use App\Models\User;
@@ -96,5 +97,10 @@ class GeneralAdminController extends Controller
         $alumni = User::where('username', $username)->first();
 
         return view('notadmin.pages.alumni.detail', compact('alumni'));
+    }
+
+    public function lamaran(LamaranDataTable $dataTable)
+    {
+        return $dataTable->render('notadmin.pages.lamaran.index');
     }
 }

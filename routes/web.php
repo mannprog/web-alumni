@@ -75,6 +75,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/dashboard-alumni/alumni', [GeneralAdminController::class, 'alumnus'])->name('alumnus.index');
         Route::get('/dashboard-alumni/alumni/{alumni}', [GeneralAdminController::class, 'detailAlumnus'])->name('alumnus.detail');
+
+        Route::get('/dashboard-alumni/lamaran', [GeneralAdminController::class, 'lamaran'])->name('lamaran.index');
     });
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
