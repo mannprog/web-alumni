@@ -186,10 +186,10 @@ class LokerController extends Controller
             });
         } catch (InvalidArgumentException $e) {
             $message = $e->getMessage();
-            return redirect()->back()->with('message', $message);
+            return redirect()->back()->with('success', $message);
         }
 
-        return redirect()->back()->with('message', 'Pelamar berhasil ditolak');
+        return redirect()->back()->with('success', 'Pelamar berhasil ditolak');
     }
 
     public function acceptLamaran($id)
@@ -203,9 +203,9 @@ class LokerController extends Controller
             });
         } catch (InvalidArgumentException $e) {
             $message = $e->getMessage();
-            return redirect()->back()->with('message', $message);
+            return redirect()->back()->with('success', $message);
         }
 
-        return redirect()->back()->with('message', 'Pelamar berhasil disetujui');
+        return redirect()->back()->with('success', 'Pelamar berhasil disetujui');
     }
 }

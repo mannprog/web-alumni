@@ -22,6 +22,13 @@
                 <span>Berita</span>
             </a>
         </li>
+
+        <li class="nav-item <?php echo e(Route::is('lowongan*') ? 'active' : ''); ?>">
+            <a class="nav-link" href="<?php echo e(route('lowongan.index')); ?>">
+                <i class="fas fa-fw fa-suitcase"></i>
+                <span>Lowongan</span>
+            </a>
+        </li>
     <?php endif; ?>
 
     <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'perusahaan')): ?>

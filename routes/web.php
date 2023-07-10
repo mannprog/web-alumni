@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardAlumniController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GeneralAdminController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\PerusahaanController;
@@ -38,22 +39,24 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/profil/{id}', [DashboardController::class, 'profile'])->name('profile');
         Route::get('/profil/{id}/edit', [DashboardController::class, 'editProfile'])->name('edit-profile');
         Route::put('/profil/{id}', [DashboardController::class, 'updateProfile'])->name('update-profile');
+    });
 
-        Route::group(['middleware' => ['role:perusahaan']], function () {
-            Route::resource('/dashboard/loker', LokerController::class);
-            Route::post('/dashboard/lamaran/{id}/accept', [LokerController::class, 'acceptLamaran'])->name('lamaran.accept');
-            Route::post('/dashboard/lamaran/{id}/reject', [LokerController::class, 'rejectLamaran'])->name('lamaran.reject');
-        });
+    Route::group(['middleware' => ['role:admin|kepalasekolah|petugas']], function () {
+        Route::resource('/dashboard/berita', BeritaController::class);
+        Route::get('/dashboard/lowongan', [GeneralAdminController::class, 'allLowongan'])->name('lowongan.index');
+        Route::get('/dashboard/lowongan/{lowongan}', [GeneralAdminController::class, 'detailLowongan'])->name('lowongan.detail');
 
-        Route::group(['middleware' => ['role:admin|kepalasekolah|petugas']], function () {
-            Route::resource('/dashboard/berita', BeritaController::class);
+        // Pengaturan
+        Route::resource('/dashboard/setting/kategori', KategoriController::class);
+        Route::resource('/dashboard/setting/petugas', PetugasController::class);
+        Route::resource('/dashboard/setting/alumni', AlumniController::class);
+        Route::resource('/dashboard/setting/perusahaan', PerusahaanController::class);
+    });
 
-            // Pengaturan
-            Route::resource('/dashboard/kategori', KategoriController::class);
-            Route::resource('/dashboard/petugas', PetugasController::class);
-            Route::resource('/dashboard/alumni', AlumniController::class);
-            Route::resource('/dashboard/perusahaan', PerusahaanController::class);
-        });
+    Route::group(['middleware' => ['role:perusahaan']], function () {
+        Route::resource('/dashboard/loker', LokerController::class);
+        Route::post('/dashboard/lamaran/{id}/accept', [LokerController::class, 'acceptLamaran'])->name('lamaran.accept');
+        Route::post('/dashboard/lamaran/{id}/reject', [LokerController::class, 'rejectLamaran'])->name('lamaran.reject');
     });
 
     Route::group(['middleware' => ['role:alumni']], function () {
@@ -62,6 +65,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard-alumni/profil/{id}/edit', [DashboardAlumniController::class, 'editProfile'])->name('editProfile-alumni');
         Route::put('/dashboard-alumni/profil/{id}', [DashboardAlumniController::class, 'updateProfile'])->name('updateProfile-alumni');
         // Route::resource('/dashboard-alumni/profil', DashboardAlumniController::class);
+
+        Route::get('/dashboard-alumni/lowongan', [GeneralAdminController::class, 'allLowonganAlumni'])->name('lowongan-alumni.index');
+        Route::get('/dashboard-alumni/lowongan/{lowongan}', [GeneralAdminController::class, 'detailLowonganAlumni'])->name('lowongan-alumni.detail');
+        Route::post('/dashboard-alumni/lowongan', [GeneralAdminController::class, 'kirimLamaran'])->name('kirim-lamaran');
     });
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\UserKontak;
 use App\Models\PetugasDetail;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -87,8 +88,17 @@ class User extends Authenticatable
         return $this->hasMany(Lamaran::class);
     }
 
-    // public function getRouteKeyName(): string
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
+    // public function sluggable(): array
     // {
-    //     return 'username';
+    //     return [
+    //         'slug' => [
+    //             'source' => 'username'
+    //         ]
+    //     ];
     // }
 }

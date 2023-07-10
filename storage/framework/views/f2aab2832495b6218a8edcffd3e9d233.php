@@ -21,7 +21,8 @@
                     <tbody>
                         <?php if($lowongan->isEmpty()): ?>
                             <tr>
-                                <td colspan="4">Tidak ada lowongan yang tersedia dalam kategori ini.</td>
+                                <td colspan="4" class="text-center">Tidak ada lowongan yang tersedia dalam kategori ini.
+                                </td>
                             </tr>
                         <?php else: ?>
                             <?php $__currentLoopData = $lowongan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $loker): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

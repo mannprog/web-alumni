@@ -26,6 +26,13 @@
                 <span>Berita</span>
             </a>
         </li>
+
+        <li class="nav-item {{ Route::is('lowongan*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('lowongan.index') }}">
+                <i class="fas fa-fw fa-suitcase"></i>
+                <span>Lowongan</span>
+            </a>
+        </li>
     @endrole
 
     @role('perusahaan')

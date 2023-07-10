@@ -26,8 +26,8 @@
         </a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link">
+    <li class="nav-item {{ Route::is('lowongan-alumni*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('lowongan-alumni.index') }}">
             <i class="fas fa-fw fa-suitcase"></i>
             <span>Lowongan</span>
         </a>
@@ -38,37 +38,6 @@
             <i class="fas fa-fw fa-user-graduate"></i>
             <span>Alumni</span>
         </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link">
-            <i class="fas fa-fw fa-file-alt"></i>
-            <span>Laporan</span>
-        </a>
-    </li>
-
-    <hr class="sidebar-divider">
-
-    <div class="sidebar-heading">
-        Pengaturan
-    </div>
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-            aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Users</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ Route::is('petugas*') ? 'active' : '' }}"
-                    href="{{ route('petugas.index') }}">Petugas</a>
-                <a class="collapse-item {{ Route::is('alumni*') ? 'active' : '' }}"
-                    href="{{ route('alumni.index') }}">Alumni</a>
-                <a class="collapse-item {{ Route::is('perusahaan*') ? 'active' : '' }}"
-                    href="{{ route('perusahaan.index') }}">Perusahaan</a>
-            </div>
-        </div>
     </li>
 
     <hr class="sidebar-divider d-none d-md-block">
