@@ -29,8 +29,8 @@
         </a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link">
+    <li class="nav-item <?php echo e(Route::is('alumnus*') ? 'active' : ''); ?>">
+        <a class="nav-link" href="<?php echo e(route('alumnus.index')); ?>">
             <i class="fas fa-fw fa-user-graduate"></i>
             <span>Alumni</span>
         </a>

@@ -131,7 +131,7 @@
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <a href="<?php echo e(route('alumni.show', $lamar->user_id)); ?>"
+                                        <a href="<?php echo e(route('allAlumni.detail', $lamar->user->username)); ?>"
                                             class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
                                         <?php if($lamar->is_accept === null): ?>
                                             <a href="#" class="btn btn-sm btn-info" data-toggle="modal"

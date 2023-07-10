@@ -57,6 +57,9 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/dashboard/loker', LokerController::class);
         Route::post('/dashboard/lamaran/{id}/accept', [LokerController::class, 'acceptLamaran'])->name('lamaran.accept');
         Route::post('/dashboard/lamaran/{id}/reject', [LokerController::class, 'rejectLamaran'])->name('lamaran.reject');
+
+        Route::get('/dashboard/alumni', [GeneralAdminController::class, 'allAlumni'])->name('allAlumni.index');
+        Route::get('/dashboard/alumni/{alumni}', [GeneralAdminController::class, 'detailAlumni'])->name('allAlumni.detail');
     });
 
     Route::group(['middleware' => ['role:alumni']], function () {
@@ -69,6 +72,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard-alumni/lowongan', [GeneralAdminController::class, 'allLowonganAlumni'])->name('lowongan-alumni.index');
         Route::get('/dashboard-alumni/lowongan/{lowongan}', [GeneralAdminController::class, 'detailLowonganAlumni'])->name('lowongan-alumni.detail');
         Route::post('/dashboard-alumni/lowongan', [GeneralAdminController::class, 'kirimLamaran'])->name('kirim-lamaran');
+
+        Route::get('/dashboard-alumni/alumni', [GeneralAdminController::class, 'alumnus'])->name('alumnus.index');
+        Route::get('/dashboard-alumni/alumni/{alumni}', [GeneralAdminController::class, 'detailAlumnus'])->name('alumnus.detail');
     });
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

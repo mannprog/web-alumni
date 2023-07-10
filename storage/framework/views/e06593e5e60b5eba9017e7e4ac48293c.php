@@ -18,7 +18,7 @@
                                 style="height: 150px">
                         <?php endif; ?>
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo e($loker->nama); ?></h5>
+                            <h5 class="card-title font-weight-bold"><?php echo e($loker->nama); ?></h5>
                             <h6 class="card-subtitle mb-2 text-muted"><?php echo e($loker->user->name); ?></h6>
                             <?php if($loker->is_active === 0): ?>
                                 <span class="badge badge-pill badge-primary mb-2">Dibuka</span>
@@ -39,6 +39,11 @@
                 </a>
             </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+
+    <div class="mt-4 pagination justify-content-center">
+        <?php echo e($lowongan->links()); ?>
+
     </div>
 <?php $__env->stopSection(); ?>
 

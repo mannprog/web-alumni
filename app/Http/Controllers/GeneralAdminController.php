@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Loker;
 use App\Models\Lamaran;
+use App\Models\User;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,7 @@ class GeneralAdminController extends Controller
     public function allLowongan()
     {
         return view('admin.pages.general.lowongan.index', [
-            'lowongan' => Loker::all(),
+            'lowongan' => Loker::paginate(10),
         ]);
     }
 
@@ -31,7 +32,7 @@ class GeneralAdminController extends Controller
     public function allLowonganAlumni()
     {
         return view('notadmin.pages.lowongan.index', [
-            'lowongan' => Loker::all(),
+            'lowongan' => Loker::paginate(10),
         ]);
     }
 
@@ -63,5 +64,37 @@ class GeneralAdminController extends Controller
         }
 
         return redirect()->back()->with('message', 'Lamaran berhasil dikirim');
+    }
+
+    public function allAlumni()
+    {
+        $alumni = User::whereHas('roles', function ($query) {
+            $query->where('name', 'alumni');
+        })->paginate(10);
+
+        return view('admin.pages.general.alumni.index', compact('alumni'));
+    }
+
+    public function detailAlumni($username)
+    {
+        $alumni = User::where('username', $username)->first();
+
+        return view('admin.pages.general.alumni.detail', compact('alumni'));
+    }
+
+    public function alumnus()
+    {
+        $alumni = User::whereHas('roles', function ($query) {
+            $query->where('name', 'alumni');
+        })->paginate(10);
+
+        return view('notadmin.pages.alumni.index', compact('alumni'));
+    }
+
+    public function detailAlumnus($username)
+    {
+        $alumni = User::where('username', $username)->first();
+
+        return view('notadmin.pages.alumni.detail', compact('alumni'));
     }
 }

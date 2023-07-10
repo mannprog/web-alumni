@@ -18,7 +18,7 @@
                                 style="height: 150px">
                         @endif
                         <div class="card-body">
-                            <h5 class="card-title">{{ $loker->nama }}</h5>
+                            <h5 class="card-title font-weight-bold">{{ $loker->nama }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $loker->user->name }}</h6>
                             @if ($loker->is_active === 0)
                                 <span class="badge badge-pill badge-primary mb-2">Dibuka</span>
@@ -38,5 +38,9 @@
                 </a>
             </div>
         @endforeach
+    </div>
+
+    <div class="mt-4 pagination justify-content-center">
+        {{ $lowongan->links() }}
     </div>
 @endsection

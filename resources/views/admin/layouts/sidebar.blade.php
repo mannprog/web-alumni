@@ -43,8 +43,8 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link">
+        <li class="nav-item  {{ Route::is('allAlumni*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('allAlumni.index') }}">
                 <i class="fas fa-fw fa-user-graduate"></i>
                 <span>Alumni</span>
             </a>

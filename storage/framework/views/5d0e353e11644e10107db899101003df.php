@@ -39,8 +39,8 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link">
+        <li class="nav-item  <?php echo e(Route::is('allAlumni*') ? 'active' : ''); ?>">
+            <a class="nav-link" href="<?php echo e(route('allAlumni.index')); ?>">
                 <i class="fas fa-fw fa-user-graduate"></i>
                 <span>Alumni</span>
             </a>
