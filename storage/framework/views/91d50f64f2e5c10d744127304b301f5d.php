@@ -10,11 +10,11 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
-                <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
-                <li><a class="nav-link scrollto" href="#services">Berita</a></li>
-                <li><a class="nav-link scrollto " href="#portfolio">Lowongan</a></li>
-                <li><a class="nav-link scrollto" href="#team">Alumni</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
+                <li><a class="nav-link scrollto" href="#tentang">Tentang</a></li>
+                <li><a class="nav-link scrollto" href="#berita">Berita</a></li>
+                <li><a class="nav-link scrollto " href="#lowongan">Lowongan</a></li>
+                <li><a class="nav-link scrollto" href="#alumni">Alumni</a></li>
+                <li><a class="nav-link scrollto" href="#kontak">Kontak</a></li>
                 <?php if(Route::has('login')): ?>
                     <?php if(auth()->guard()->check()): ?>
                         <?php if(Auth::user()->is_admin == 0): ?>

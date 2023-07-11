@@ -2,7 +2,7 @@
 
 <?php $__env->startSection('content'); ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Data Detail Alumni - <?php echo e($alumni->name); ?></h1>
+        <h1 class="h3 mb-0 text-gray-800">Detail Alumni - <?php echo e($alumni->name); ?></h1>
         <a href="<?php echo e(route('allAlumni.index')); ?>" class="btn btn-sm btn-secondary shadow-sm">Kembali</a>
     </div>
 

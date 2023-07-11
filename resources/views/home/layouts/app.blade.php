@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Regna Bootstrap Template</title>
+    <title>SMK 35 PGRI Solokan Jeruk</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -39,9 +39,9 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero">
         <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
-            <h1>Welcome to Regna</h1>
-            <h2>We are team of talented designers making websites with Bootstrap</h2>
-            <a href="#about" class="btn-get-started">Get Started</a>
+            <h1>Selamat Datang Diwebsite Alumni</h1>
+            <h2>SMK 35 PGRI Solokan Jeruk</h2>
+            <a href="#tentang" class="btn-get-started">Lihat Selengkapnya</a>
         </div>
     </section><!-- End Hero Section -->
 

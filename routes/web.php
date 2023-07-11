@@ -6,6 +6,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardAlumniController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GeneralAdminController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\PerusahaanController;
@@ -23,9 +24,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home.welcome');
-})->name('homepage');
+Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+Route::get('/berita', [HomepageController::class, 'allBerita'])->name('all-berita');
+Route::get('/berita/{slug}', [HomepageController::class, 'detailBerita'])->name('detail-berita');
 
 Route::get('/login', function () {
     return view('auth.login');
