@@ -140,67 +140,35 @@
         <div class="container" data-aos="fade-up">
             <div class="section-header">
                 <h3 class="section-title">Alumni</h3>
-                <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                    accusantium doloremque</p>
+                <p class="section-description">Berikut adalah daftar alumni.</p>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="member" data-aos="fade-up" data-aos-delay="100">
-                        <div class="pic"><img src="assets/img/alumni-1.jpg" alt=""></div>
-                        <h4>Walter White</h4>
-                        <span>Chief Executive Officer</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
+                <?php $__currentLoopData = $alumni; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $al): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="member" data-aos="fade-up" data-aos-delay="100">
+                            <div class="pic">
+                                <a href=""><img src="<?php echo e(asset('img/foto/' . $al->foto)); ?>" alt=""></a>
+                            </div>
+                            <h4><?php echo e($al->name); ?></h4>
+                            <span><?php echo e($al->alumniAkademik->tahun_masuk); ?> - <?php echo e($al->alumniAkademik->tahun_lulus); ?></span>
+                            <div class="social">
+                                <a href="https://twitter.com/<?php echo e($al->userKontak->twitter); ?>" target="_blank"><i
+                                        class="bi bi-twitter"></i></a>
+                                <a href="https://facebook.com/<?php echo e($al->userKontak->facebook); ?>" target="_blank"><i
+                                        class="bi bi-facebook"></i></a>
+                                <a href="https://instagram.com/<?php echo e($al->userKontak->instagram); ?>" target="_blank"><i
+                                        class="bi bi-instagram"></i></a>
+                                <a href="mailto:<?php echo e($al->email); ?>"><i class="bi bi-envelope"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="member" data-aos="fade-up" data-aos-delay="200">
-                        <div class="pic"><img src="assets/img/alumni-2.jpg" alt=""></div>
-                        <h4>Sarah Jhinson</h4>
-                        <span>Product Manager</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="member" data-aos="fade-up" data-aos-delay="300">
-                        <div class="pic"><img src="assets/img/alumni-3.jpg" alt=""></div>
-                        <h4>William Anderson</h4>
-                        <span>CTO</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="member" data-aos="fade-up" data-aos-delay="400">
-                        <div class="pic"><img src="assets/img/alumni-4.jpg" alt=""></div>
-                        <h4>Amanda Jepson</h4>
-                        <span>Accountant</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
-
+            <?php if($alumni->isNotEmpty()): ?>
+                <div class="brt-btn-container text-center">
+                    <a class="brt-btn align-middle" href="<?php echo e(route('all-lowongan')); ?>">Lihat Selengkapnya</a>
+                </div>
+            <?php endif; ?>
         </div>
     </section><!-- End Alumni Section -->
 
