@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->date('tanggal_mulai');
             $table->date('tanggal_akhir');
             $table->string('foto')->nullable();
-            $table->boolean('is_active')->default(1);
+            $table->boolean('is_active')->default(0);
             $table->timestamps();
         });
     }

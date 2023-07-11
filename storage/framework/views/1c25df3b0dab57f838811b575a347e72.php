@@ -50,21 +50,28 @@
                 <p class="section-description">Berikut adalah daftar berita atau pengumuman.</p>
             </div>
             <div class="row">
-                <?php $__currentLoopData = $berita; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-                        <div class="box">
-                            <div class="icon"><a href="<?php echo e(route('detail-berita', $brt->slug)); ?>"><i
-                                        class="bi bi-newspaper"></i></a></div>
-                            <h4 class="title"><a href="<?php echo e(route('detail-berita', $brt->slug)); ?>"><?php echo e($brt->judul); ?></a>
-                            </h4>
-                            <p class="description"><?php echo $brt->kutipan; ?></p>
+                <?php if($berita->isEmpty()): ?>
+                    <h3 class="text-center">Belum Ada Berita</h3>
+                <?php else: ?>
+                    <?php $__currentLoopData = $berita; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                            <div class="box">
+                                <div class="icon"><a href="<?php echo e(route('detail-berita', $brt->slug)); ?>"><i
+                                            class="bi bi-newspaper"></i></a></div>
+                                <h4 class="title"><a
+                                        href="<?php echo e(route('detail-berita', $brt->slug)); ?>"><?php echo e($brt->judul); ?></a>
+                                </h4>
+                                <p class="description"><?php echo $brt->kutipan; ?></p>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endif; ?>
             </div>
-            <div class="brt-btn-container text-center">
-                <a class="brt-btn align-middle" href="<?php echo e(route('all-berita')); ?>">Lihat Selengkapnya</a>
-            </div>
+            <?php if($berita->isNotEmpty()): ?>
+                <div class="brt-btn-container text-center">
+                    <a class="brt-btn align-middle" href="<?php echo e(route('all-berita')); ?>">Lihat Selengkapnya</a>
+                </div>
+            <?php endif; ?>
         </div>
     </section><!-- End Berita Section -->
 
@@ -87,51 +94,44 @@
     </section><!-- End Call To Action Section -->
 
     <!-- ======= Lowongan Section ======= -->
-    <section id="lowongan" class="lowongan">
+    <section id="lowongan">
         <div class="container" data-aos="fade-up">
             <div class="section-header">
                 <h3 class="section-title">Lowongan</h3>
                 <p class="section-description">Berikut adalah daftar lowongan pekerjaan.</p>
             </div>
-
-            <div class="row lowongan-container" data-aos="fade-up" data-aos-delay="200">
-                <?php $__currentLoopData = $loker; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lkr): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-lg-4 col-md-6 lowongan-item">
-                        <a href="#" class="card-link text-dark">
-                            <div class="card shadow">
-                                <?php if($lkr->foto): ?>
-                                    <img class="card-img-top img-fluid" src="<?php echo e(asset('img/loker/' . $lkr->foto)); ?>"
-                                        style="height: 150px">
-                                <?php else: ?>
-                                    <img class="card-img-top img-fluid" src="<?php echo e(asset('img/foto/' . $lkr->user->foto)); ?>"
-                                        style="height: 150px">
-                                <?php endif; ?>
-                                <div class="card-body">
-                                    <h5 class="card-title font-weight-bold"><?php echo e($lkr->nama); ?></h5>
-                                    <h6 class="card-subtitle mb-2 text-muted"><?php echo e($lkr->user->name); ?></h6>
-                                    <?php if($lkr->is_active === 0): ?>
-                                        <span class="badge badge-pill badge-primary mb-2">Dibuka</span>
-                                    <?php else: ?>
-                                        <span class="badge badge-pill badge-danger mb-2">Ditutup</span>
-                                    <?php endif; ?>
-                                    <p class="card-text"><i class="fas fa-fw fa-clock"></i>
-                                        <?php echo e(\Carbon\Carbon::parse($lkr->tanggal_mulai)->format('d M Y')); ?> -
-                                        <?php echo e(\Carbon\Carbon::parse($lkr->tanggal_akhir)->format('d M Y')); ?></p>
-                                    <p class="card-text"><i class="fas fa-fw fa-map-marker-alt"></i> <?php echo e($lkr->lokasi); ?>
-
-                                    </p>
-                                </div>
-                                <div class="card-footer text-muted">
-                                    <i class="fas fa-fw fa-history"></i> Diperbarui pada
-                                    <?php echo e(\Carbon\Carbon::parse($lkr->updated_at)->format('d M Y H:i:s')); ?>
-
-                                </div>
+            <div class="row">
+                <?php if($loker->isEmpty()): ?>
+                    <h3 class="text-center">Belum Ada Lowongan</h3>
+                <?php else: ?>
+                    <?php $__currentLoopData = $loker; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lkr): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                            <div class="box">
+                                <div class="icon"><a href="<?php echo e(route('detail-lowongan', $lkr->slug)); ?>"><i
+                                            class="bi bi-briefcase"></i></a></div>
+                                <h4 class="title mb-1"><a
+                                        href="<?php echo e(route('detail-lowongan', $lkr->slug)); ?>"><?php echo e($lkr->nama); ?></a>
+                                </h4>
+                                <span class="text-muted"><?php echo e($lkr->kategori->nama); ?></span>
+                                <p class="description mt-3 mb-0"><i class="bi bi-building"></i> <?php echo e($lkr->user->name); ?></p>
+                                <p class="description mb-0"><i class="bi bi-alarm"></i>
+                                    <?php echo e(\Carbon\Carbon::parse($lkr->tanggal_mulai)->format('d M Y')); ?> -
+                                    <?php echo e(\Carbon\Carbon::parse($lkr->tanggal_akhir)->format('d M Y')); ?></p>
+                                <p class="description"><i class="bi bi-geo-alt"></i>
+                                    <?php echo e($lkr->lokasi); ?></p>
+                                <p class="description mt-4 pt-2 border-top"><i class="bi bi-clock-history"></i> Diperbarui
+                                    pada
+                                    <?php echo e(\Carbon\Carbon::parse($lkr->updated_at)->format('d M Y')); ?></p>
                             </div>
-                        </a>
-                    </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endif; ?>
             </div>
-
+            <?php if($loker->isNotEmpty()): ?>
+                <div class="brt-btn-container text-center">
+                    <a class="brt-btn align-middle" href="<?php echo e(route('all-lowongan')); ?>">Lihat Selengkapnya</a>
+                </div>
+            <?php endif; ?>
         </div>
     </section><!-- End Lowongan Section -->
 

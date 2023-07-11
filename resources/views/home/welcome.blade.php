@@ -52,21 +52,28 @@
                 <p class="section-description">Berikut adalah daftar berita atau pengumuman.</p>
             </div>
             <div class="row">
-                @foreach ($berita as $brt)
-                    <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-                        <div class="box">
-                            <div class="icon"><a href="{{ route('detail-berita', $brt->slug) }}"><i
-                                        class="bi bi-newspaper"></i></a></div>
-                            <h4 class="title"><a href="{{ route('detail-berita', $brt->slug) }}">{{ $brt->judul }}</a>
-                            </h4>
-                            <p class="description">{!! $brt->kutipan !!}</p>
+                @if ($berita->isEmpty())
+                    <h3 class="text-center">Belum Ada Berita</h3>
+                @else
+                    @foreach ($berita as $brt)
+                        <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                            <div class="box">
+                                <div class="icon"><a href="{{ route('detail-berita', $brt->slug) }}"><i
+                                            class="bi bi-newspaper"></i></a></div>
+                                <h4 class="title"><a
+                                        href="{{ route('detail-berita', $brt->slug) }}">{{ $brt->judul }}</a>
+                                </h4>
+                                <p class="description">{!! $brt->kutipan !!}</p>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
-            <div class="brt-btn-container text-center">
-                <a class="brt-btn align-middle" href="{{ route('all-berita') }}">Lihat Selengkapnya</a>
-            </div>
+            @if ($berita->isNotEmpty())
+                <div class="brt-btn-container text-center">
+                    <a class="brt-btn align-middle" href="{{ route('all-berita') }}">Lihat Selengkapnya</a>
+                </div>
+            @endif
         </div>
     </section><!-- End Berita Section -->
 
@@ -89,49 +96,44 @@
     </section><!-- End Call To Action Section -->
 
     <!-- ======= Lowongan Section ======= -->
-    <section id="lowongan" class="lowongan">
+    <section id="lowongan">
         <div class="container" data-aos="fade-up">
             <div class="section-header">
                 <h3 class="section-title">Lowongan</h3>
                 <p class="section-description">Berikut adalah daftar lowongan pekerjaan.</p>
             </div>
-
-            <div class="row lowongan-container" data-aos="fade-up" data-aos-delay="200">
-                @foreach ($loker as $lkr)
-                    <div class="col-lg-4 col-md-6 lowongan-item">
-                        <a href="#" class="card-link text-dark">
-                            <div class="card shadow">
-                                @if ($lkr->foto)
-                                    <img class="card-img-top img-fluid" src="{{ asset('img/loker/' . $lkr->foto) }}"
-                                        style="height: 150px">
-                                @else
-                                    <img class="card-img-top img-fluid" src="{{ asset('img/foto/' . $lkr->user->foto) }}"
-                                        style="height: 150px">
-                                @endif
-                                <div class="card-body">
-                                    <h5 class="card-title font-weight-bold">{{ $lkr->nama }}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">{{ $lkr->user->name }}</h6>
-                                    @if ($lkr->is_active === 0)
-                                        <span class="badge badge-pill badge-primary mb-2">Dibuka</span>
-                                    @else
-                                        <span class="badge badge-pill badge-danger mb-2">Ditutup</span>
-                                    @endif
-                                    <p class="card-text"><i class="fas fa-fw fa-clock"></i>
-                                        {{ \Carbon\Carbon::parse($lkr->tanggal_mulai)->format('d M Y') }} -
-                                        {{ \Carbon\Carbon::parse($lkr->tanggal_akhir)->format('d M Y') }}</p>
-                                    <p class="card-text"><i class="fas fa-fw fa-map-marker-alt"></i> {{ $lkr->lokasi }}
-                                    </p>
-                                </div>
-                                <div class="card-footer text-muted">
-                                    <i class="fas fa-fw fa-history"></i> Diperbarui pada
-                                    {{ \Carbon\Carbon::parse($lkr->updated_at)->format('d M Y H:i:s') }}
-                                </div>
+            <div class="row">
+                @if ($loker->isEmpty())
+                    <h3 class="text-center">Belum Ada Lowongan</h3>
+                @else
+                    @foreach ($loker as $lkr)
+                        <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                            <div class="box">
+                                <div class="icon"><a href="{{ route('detail-lowongan', $lkr->slug) }}"><i
+                                            class="bi bi-briefcase"></i></a></div>
+                                <h4 class="title mb-1"><a
+                                        href="{{ route('detail-lowongan', $lkr->slug) }}">{{ $lkr->nama }}</a>
+                                </h4>
+                                <span class="text-muted">{{ $lkr->kategori->nama }}</span>
+                                <p class="description mt-3 mb-0"><i class="bi bi-building"></i> {{ $lkr->user->name }}</p>
+                                <p class="description mb-0"><i class="bi bi-alarm"></i>
+                                    {{ \Carbon\Carbon::parse($lkr->tanggal_mulai)->format('d M Y') }} -
+                                    {{ \Carbon\Carbon::parse($lkr->tanggal_akhir)->format('d M Y') }}</p>
+                                <p class="description"><i class="bi bi-geo-alt"></i>
+                                    {{ $lkr->lokasi }}</p>
+                                <p class="description mt-4 pt-2 border-top"><i class="bi bi-clock-history"></i> Diperbarui
+                                    pada
+                                    {{ \Carbon\Carbon::parse($lkr->updated_at)->format('d M Y') }}</p>
                             </div>
-                        </a>
-                    </div>
-                @endforeach
+                        </div>
+                    @endforeach
+                @endif
             </div>
-
+            @if ($loker->isNotEmpty())
+                <div class="brt-btn-container text-center">
+                    <a class="brt-btn align-middle" href="{{ route('all-lowongan') }}">Lihat Selengkapnya</a>
+                </div>
+            @endif
         </div>
     </section><!-- End Lowongan Section -->
 

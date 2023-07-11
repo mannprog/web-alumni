@@ -571,6 +571,16 @@ section {
     background: whitesmoke;
 }
 
+.inner-page .lkr-box {
+    padding: 50px 20px;
+    margin-bottom: 50px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    height: 250px;
+    position: relative;
+    background: whitesmoke;
+}
+
 .inner-page .icon {
     position: absolute;
     top: -36px;
@@ -734,12 +744,12 @@ section {
 #berita {
     background: #f7f7f7;
     background-size: cover;
-    padding: 80px 0 60px 0;
+    padding: 40px 0 60px 0;
 }
 
 #berita .box {
     padding: 50px 20px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     text-align: center;
     border: 1px solid #e6e6e6;
     height: 300px;
@@ -890,7 +900,7 @@ section {
 --------------------------------*/
 #lowongan {
     background: #f7f7f7;
-    padding: 80px 0;
+    padding: 50px 0;
 }
 
 #lowongan #lowongan-flters {
@@ -986,6 +996,103 @@ section {
 #lowongan .lowongan-item:hover .lowongan-info {
     opacity: 1;
     bottom: 0;
+}
+
+#lowongan .box {
+    padding: 50px 20px;
+    margin-bottom: 50px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    height: 250px;
+    position: relative;
+    background: #fff;
+}
+
+#lowongan .icon {
+    position: absolute;
+    top: -36px;
+    left: calc(50% - 36px);
+    transition: 0.2s;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 72px;
+    height: 72px;
+    background: #2dc997;
+}
+
+#lowongan .icon a {
+    display: inline-block;
+}
+
+#lowongan .icon i {
+    color: #fff;
+    font-size: 24px;
+    line-height: 0;
+}
+
+#lowongan .box:hover .icon {
+    background: #fff;
+    border: 2px solid #2dc997;
+}
+
+#lowongan .box:hover .icon i {
+    color: #2dc997;
+}
+
+#lowongan .box:hover .icon a {
+    color: #2dc997;
+}
+
+#lowongan .title {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+#lowongan .title a {
+    color: #111;
+}
+
+#lowongan .description {
+    font-size: 14px;
+    text-align: justify;
+    line-height: 24px;
+    margin-bottom: 5px;
+}
+
+@media (min-width: 769px) {
+    #lowongan .brt-btn-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+#lowongan .brt-btn {
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 30px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin: 10px;
+    border: 2px solid #2dc997;
+    color: #2dc997;
+}
+
+#lowongan .brt-btn:hover {
+    background: #2dc997;
+    border: 2px solid #2dc997;
+    color: #fff;
 }
 
 /*--------------------------------------------------------------
