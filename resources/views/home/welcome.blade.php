@@ -149,7 +149,8 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="member" data-aos="fade-up" data-aos-delay="100">
                             <div class="pic">
-                                <a href=""><img src="{{ asset('img/foto/' . $al->foto) }}" alt=""></a>
+                                <a href="{{ route('detail-alumni', $al->username) }}"><img
+                                        src="{{ asset('img/foto/' . $al->foto) }}" alt=""></a>
                             </div>
                             <h4>{{ $al->name }}</h4>
                             <span>{{ $al->alumniAkademik->tahun_masuk }} - {{ $al->alumniAkademik->tahun_lulus }}</span>
@@ -168,7 +169,7 @@
             </div>
             @if ($alumni->isNotEmpty())
                 <div class="brt-btn-container text-center">
-                    <a class="brt-btn align-middle" href="{{ route('all-lowongan') }}">Lihat Selengkapnya</a>
+                    <a class="brt-btn align-middle" href="{{ route('all-alumni') }}">Lihat Selengkapnya</a>
                 </div>
             @endif
         </div>

@@ -29,6 +29,8 @@ Route::get('/berita', [HomepageController::class, 'allBerita'])->name('all-berit
 Route::get('/berita/{slug}', [HomepageController::class, 'detailBerita'])->name('detail-berita');
 Route::get('/lowongan', [HomepageController::class, 'allLowongan'])->name('all-lowongan');
 Route::get('/lowongan/{slug}', [HomepageController::class, 'detailLowongan'])->name('detail-lowongan');
+Route::get('/alumni', [HomepageController::class, 'allAlumni'])->name('all-alumni');
+Route::get('/alumni/{username}', [HomepageController::class, 'detailAlumni'])->name('detail-alumni');
 
 Route::get('/login', function () {
     return view('auth.login');

@@ -47,4 +47,20 @@ class HomepageController extends Controller
 
         return view('home.pages.lowongan.detail', compact('loker'));   
     }
+
+    public function allAlumni()
+    {
+        $alumni = User::whereHas('roles', function ($query) {
+            $query->where('name', 'alumni');
+        })->paginate(12);
+
+        return view('home.pages.alumni.index', compact('alumni'));
+    }
+
+    public function detailAlumni($username)
+    {
+        $alumni = User::where('username', $username)->firstOrFail();
+
+        return view('home.pages.alumni.detail', compact('alumni'));   
+    }
 }

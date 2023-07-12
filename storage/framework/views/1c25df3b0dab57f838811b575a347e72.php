@@ -147,7 +147,8 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="member" data-aos="fade-up" data-aos-delay="100">
                             <div class="pic">
-                                <a href=""><img src="<?php echo e(asset('img/foto/' . $al->foto)); ?>" alt=""></a>
+                                <a href="<?php echo e(route('detail-alumni', $al->username)); ?>"><img
+                                        src="<?php echo e(asset('img/foto/' . $al->foto)); ?>" alt=""></a>
                             </div>
                             <h4><?php echo e($al->name); ?></h4>
                             <span><?php echo e($al->alumniAkademik->tahun_masuk); ?> - <?php echo e($al->alumniAkademik->tahun_lulus); ?></span>
@@ -166,7 +167,7 @@
             </div>
             <?php if($alumni->isNotEmpty()): ?>
                 <div class="brt-btn-container text-center">
-                    <a class="brt-btn align-middle" href="<?php echo e(route('all-lowongan')); ?>">Lihat Selengkapnya</a>
+                    <a class="brt-btn align-middle" href="<?php echo e(route('all-alumni')); ?>">Lihat Selengkapnya</a>
                 </div>
             <?php endif; ?>
         </div>

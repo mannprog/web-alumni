@@ -638,6 +638,50 @@ section {
     line-height: 24px;
 }
 
+.inner-page .member {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.inner-page .member .pic {
+    margin-bottom: 15px;
+    overflow: hidden;
+    height: 260px;
+}
+
+.inner-page .member .pic img {
+    max-width: 100%;
+}
+
+.inner-page .member h4 {
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-size: 18px;
+}
+
+.inner-page .member span {
+    font-style: italic;
+    display: block;
+    font-size: 13px;
+}
+
+.inner-page .member .social {
+    margin-top: 15px;
+}
+
+.inner-page .member .social a {
+    color: #b3b3b3;
+}
+
+.inner-page .member .social a:hover {
+    color: #2dc997;
+}
+
+.inner-page .member .social i {
+    font-size: 18px;
+    margin: 0 2px;
+}
+
 /* Tentang Section
 --------------------------------*/
 #tentang {

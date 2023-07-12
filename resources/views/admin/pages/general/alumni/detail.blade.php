@@ -46,15 +46,6 @@
                     <div class="container">
                         @include('admin.pages.general.alumni.partials.alumni-akademik')
                     </div>
-                    <div class="row align-items-center mt-3 mb-0">
-                        <div class="col-lg-12">
-                            <p class="font-weight-bold">Data Keluarga
-                            </p>
-                        </div>
-                    </div>
-                    <div class="container">
-                        @include('admin.pages.general.alumni.partials.alumni-keluarga')
-                    </div>
                 </div>
             </div>
         </div>
