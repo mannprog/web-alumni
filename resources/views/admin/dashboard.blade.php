@@ -15,12 +15,22 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Perusahaan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Petugas
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $petugas }}</div>
+                                </div>
+                                {{-- <div class="col">
+                                    <div class="progress progress-sm mr-2">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
+                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div> --}}
+                            </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-building fa-2x text-gray-300"></i>
+                            <i class="fas fa-user-tie fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -35,7 +45,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Alumni</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $alumni }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-graduate fa-2x text-gray-300"></i>
@@ -51,22 +61,12 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pengunjung
-                            </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">10</div>
-                                </div>
-                                {{-- <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div> --}}
-                            </div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Perusahaan</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $perusahaan }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                            <i class="fas fa-building fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Lowongan Pekerjaan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $loker }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-suitcase fa-2x text-gray-300"></i>
@@ -105,9 +105,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
-                    </div>
+                    <canvas id="barChart"></canvas>
                 </div>
             </div>
         </div>
@@ -140,3 +138,39 @@
         </div>
     </div>
 @endsection
+
+@push('custom-scripts')
+    <script>
+        // Mendapatkan referensi ke elemen <canvas>
+        var ctx = document.getElementById('barChart').getContext('2d');
+
+        // Menyiapkan data untuk diagram batang
+        var tahunLulus = [2015, 2016, 2017, 2018, 2019, 2020]; // Contoh data tahun lulus
+        var jumlahAlumni = [50, 80, 120, 100, 90, 110]; // Contoh data jumlah alumni per tahun
+
+        // Menggambar diagram batang
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: tahunLulus,
+                datasets: [{
+                    label: 'Jumlah Alumni',
+                    data: jumlahAlumni,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Warna latar belakang batang
+                    borderColor: 'rgba(54, 162, 235, 1)', // Warna garis batang
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true, // Mulai sumbu y dari 0
+                        ticks: {
+                            precision: 0 // Mengatur jumlah desimal pada label sumbu y
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+@endpush

@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use InvalidArgumentException;
 use App\Models\AlumniAkademik;
 use App\Models\AlumniKeluarga;
+use App\Models\Lamaran;
+use App\Models\Loker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 
@@ -16,7 +18,13 @@ class DashboardAlumniController extends Controller
 {
     public function index()
     {
-        return view('notadmin.index');
+        $alumni = User::whereHas('roles', function ($query) {
+            $query->where('name', 'alumni');
+        })->count();
+        $loker = Loker::count();
+        $lamaran = Lamaran::count();
+
+        return view('notadmin.index', compact('alumni', 'loker', 'lamaran'));
     }
 
     public function profile($id)

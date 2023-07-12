@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Loker;
 use App\Models\UserKontak;
 use App\Models\AlumniDetail;
 use App\Models\AlumniFamily;
@@ -22,7 +23,18 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $petugas = User::whereHas('roles', function ($query) {
+                $query->whereIn('name', ['admin', 'petugas', 'kepalasekolah']);
+            })->count();
+        $alumni = User::whereHas('roles', function ($query) {
+                $query->where('name', 'alumni');
+            })->count();
+        $perusahaan = User::whereHas('roles', function ($query) {
+                $query->where('name', 'perusahaan');
+            })->count();
+        $loker = Loker::count();
+        
+        return view('admin.dashboard', compact('petugas', 'alumni', 'perusahaan', 'loker'));
     }
 
     public function notadmin()
