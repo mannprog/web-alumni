@@ -36,17 +36,19 @@ class LamaranDataTable extends DataTable
         ->addColumn('tanggal_lamaran_formatted', function ($row) {
             return Carbon::parse($row->tanggal_lamaran)->format('d M Y');
         })
-        ->addColumn('status', function ($row) {
-            if($row->is_active) {
-                if ($row->is_active === 0) {
-                    return 'Lamaran Disetujui';
-                } elseif ($row->is_active === 1) {
-                    return 'Lamaran Ditolak';
-                } 
+        ->addColumn('status_lamaran', function ($row) {
+            $acc = 'Lamaran Disetujui';
+            $rej = 'Lamaran Ditolak';
+            $null = 'Belum Ditentukan';
+            if ($row->is_accept === 0) {
+                return $acc;
+            } elseif($row->is_accept === 1) {
+                return $rej;
             } else {
-                return 'Belum Ditentukan';
+                return $null;
             }
         })
+        ->rawColumns(['status_lamaran'])
         ->rawColumns(['action']);
     }
 
@@ -98,15 +100,14 @@ class LamaranDataTable extends DataTable
                     // ->width(5)
                     ->searchable(false)
                     ->orderable(false)
-                    ->addClass("text-sm font-weight-normal")
-                    ->addClass('text-center'),
+                    ->addClass("text-sm font-weight-normal text-center"),
                 Column::make('lowongan_nama')
                     ->addClass("text-sm font-weight-normal text-wrap")
                     ->title('Lowongan'),
                 Column::make('tanggal_lamaran_formatted')
                     ->addClass("text-sm font-weight-normal text-wrap")
                     ->title('Tanggal Lamaran'),
-                Column::make('status')
+                Column::make('status_lamaran')
                     ->addClass("text-sm font-weight-normal text-wrap")
                     ->title('Status'),
                 // Column::computed('action')
