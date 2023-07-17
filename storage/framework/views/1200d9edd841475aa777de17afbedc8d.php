@@ -2,7 +2,7 @@
 
 <?php $__env->startSection('content'); ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Data Detail Alumni - <?php echo e($alumni->name); ?></h1>
+        <h1 class="h3 mb-0 text-gray-800">Detail Alumni - <?php echo e($alumni->name); ?></h1>
         <a href="<?php echo e(route('alumnus.index')); ?>" class="btn btn-sm btn-secondary shadow-sm">Kembali</a>
     </div>
 
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="container">
-                        <?php echo $__env->make('admin.pages.general.alumni.partials.alumni-detail', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                        <?php echo $__env->make('notadmin.pages.alumni.partials.alumni-detail', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
                     <div class="row align-items-center mt-3 mb-0">
                         <div class="col-lg-12">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="container">
-                        <?php echo $__env->make('admin.pages.general.alumni.partials.alumni-kontak', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                        <?php echo $__env->make('notadmin.pages.alumni.partials.alumni-kontak', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
                     <div class="row align-items-center mt-3 mb-0">
                         <div class="col-lg-12">
@@ -45,16 +45,7 @@
                         </div>
                     </div>
                     <div class="container">
-                        <?php echo $__env->make('admin.pages.general.alumni.partials.alumni-akademik', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                    </div>
-                    <div class="row align-items-center mt-3 mb-0">
-                        <div class="col-lg-12">
-                            <p class="font-weight-bold">Data Keluarga
-                            </p>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <?php echo $__env->make('admin.pages.general.alumni.partials.alumni-keluarga', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                        <?php echo $__env->make('notadmin.pages.alumni.partials.alumni-akademik', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
                 </div>
             </div>

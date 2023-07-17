@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="container">
-                        @include('admin.pages.general.alumni.partials.alumni-detail')
+                        @include('notadmin.pages.alumni.partials.alumni-detail')
                     </div>
                     <div class="row align-items-center mt-3 mb-0">
                         <div class="col-lg-12">
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="container">
-                        @include('admin.pages.general.alumni.partials.alumni-kontak')
+                        @include('notadmin.pages.alumni.partials.alumni-kontak')
                     </div>
                     <div class="row align-items-center mt-3 mb-0">
                         <div class="col-lg-12">
@@ -44,16 +44,7 @@
                         </div>
                     </div>
                     <div class="container">
-                        @include('admin.pages.general.alumni.partials.alumni-akademik')
-                    </div>
-                    <div class="row align-items-center mt-3 mb-0">
-                        <div class="col-lg-12">
-                            <p class="font-weight-bold">Data Keluarga
-                            </p>
-                        </div>
-                    </div>
-                    <div class="container">
-                        @include('admin.pages.general.alumni.partials.alumni-keluarga')
+                        @include('notadmin.pages.alumni.partials.alumni-akademik')
                     </div>
                 </div>
             </div>

@@ -40,8 +40,11 @@
     </div>
     <div class="col-7">
         <?php echo e($user->alumniDetail->tempat_lahir); ?>,
-        <?php echo e(\Carbon\Carbon::parse($user->alumniDetail->tanggal_lahir)->format('d M Y')); ?>
+        <?php if($user->alumniDetail->tanggal_lahir): ?>
+            <?php echo e(\Carbon\Carbon::parse($user->alumniDetail->tanggal_lahir)->format('d M Y')); ?>
 
+        <?php else: ?>
+        <?php endif; ?>
     </div>
 </div>
 <div class="row align-items-center">

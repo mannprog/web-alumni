@@ -47,15 +47,6 @@
                     <div class="container">
                         <?php echo $__env->make('admin.pages.general.alumni.partials.alumni-akademik', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
-                    <div class="row align-items-center mt-3 mb-0">
-                        <div class="col-lg-12">
-                            <p class="font-weight-bold">Data Keluarga
-                            </p>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <?php echo $__env->make('admin.pages.general.alumni.partials.alumni-keluarga', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                    </div>
                 </div>
             </div>
         </div>
