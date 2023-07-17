@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\AlumniJurusanChart;
+use App\Charts\AlumniLulusChart;
 use App\Models\User;
 use App\Models\Loker;
 use App\Models\UserKontak;
@@ -21,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(AlumniJurusanChart $jurusanChart, AlumniLulusChart $lulusChart)
     {
         $petugas = User::whereHas('roles', function ($query) {
                 $query->whereIn('name', ['admin', 'petugas', 'kepalasekolah']);
@@ -33,8 +35,11 @@ class DashboardController extends Controller
                 $query->where('name', 'perusahaan');
             })->count();
         $loker = Loker::count();
+
+        $ajChart = $jurusanChart->build();
+        $alChart = $lulusChart->build();
         
-        return view('admin.dashboard', compact('petugas', 'alumni', 'perusahaan', 'loker'));
+        return view('admin.dashboard', compact('petugas', 'alumni', 'perusahaan', 'loker', 'ajChart', 'alChart'));
     }
 
     public function notadmin()

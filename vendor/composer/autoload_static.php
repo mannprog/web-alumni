@@ -182,6 +182,7 @@ class ComposerStaticInit8a2a897a01e9e15c1cbf5acec70056fc
         ),
         'A' => 
         array (
+            'ArielMejiaDev\\LarapexCharts\\' => 28,
             'App\\' => 4,
         ),
     );
@@ -556,6 +557,10 @@ class ComposerStaticInit8a2a897a01e9e15c1cbf5acec70056fc
         array (
             0 => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src',
         ),
+        'ArielMejiaDev\\LarapexCharts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -574,11 +579,16 @@ class ComposerStaticInit8a2a897a01e9e15c1cbf5acec70056fc
     );
 
     public static $classMap = array (
+        'App\\Charts\\AlumniJurusanChart' => __DIR__ . '/../..' . '/app/Charts/AlumniJurusanChart.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\DataTables\\AlumniDataTable' => __DIR__ . '/../..' . '/app/DataTables/AlumniDataTable.php',
         'App\\DataTables\\BeritaDataTable' => __DIR__ . '/../..' . '/app/DataTables/BeritaDataTable.php',
         'App\\DataTables\\KategoriDataTable' => __DIR__ . '/../..' . '/app/DataTables/KategoriDataTable.php',
         'App\\DataTables\\LamaranDataTable' => __DIR__ . '/../..' . '/app/DataTables/LamaranDataTable.php',
+        'App\\DataTables\\LaporanAlumniDataTable' => __DIR__ . '/../..' . '/app/DataTables/LaporanAlumniDataTable.php',
+        'App\\DataTables\\LaporanBeritaDataTable' => __DIR__ . '/../..' . '/app/DataTables/LaporanBeritaDataTable.php',
+        'App\\DataTables\\LaporanLowonganDataTable' => __DIR__ . '/../..' . '/app/DataTables/LaporanLowonganDataTable.php',
+        'App\\DataTables\\LaporanPerusahaanDataTable' => __DIR__ . '/../..' . '/app/DataTables/LaporanPerusahaanDataTable.php',
         'App\\DataTables\\LaporanPetugasDataTable' => __DIR__ . '/../..' . '/app/DataTables/LaporanPetugasDataTable.php',
         'App\\DataTables\\LokerDataTable' => __DIR__ . '/../..' . '/app/DataTables/LokerDataTable.php',
         'App\\DataTables\\PerusahaanDataTable' => __DIR__ . '/../..' . '/app/DataTables/PerusahaanDataTable.php',
@@ -624,6 +634,25 @@ class ComposerStaticInit8a2a897a01e9e15c1cbf5acec70056fc
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'ArielMejiaDev\\LarapexCharts\\AreaChart' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/AreaChart.php',
+        'ArielMejiaDev\\LarapexCharts\\BarChart' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/BarChart.php',
+        'ArielMejiaDev\\LarapexCharts\\Console\\ChartMakeCommand' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/Console/ChartMakeCommand.php',
+        'ArielMejiaDev\\LarapexCharts\\Contracts\\MustAddComplexData' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/Contracts/MustAddComplexData.php',
+        'ArielMejiaDev\\LarapexCharts\\Contracts\\MustAddSimpleData' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/Contracts/MustAddSimpleData.php',
+        'ArielMejiaDev\\LarapexCharts\\DonutChart' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/DonutChart.php',
+        'ArielMejiaDev\\LarapexCharts\\Facades\\LarapexChart' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/Facades/LarapexChart.php',
+        'ArielMejiaDev\\LarapexCharts\\HeatMapChart' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/HeatMapChart.php',
+        'ArielMejiaDev\\LarapexCharts\\HorizontalBar' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/HorizontalBar.php',
+        'ArielMejiaDev\\LarapexCharts\\LarapexChart' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/LarapexChart.php',
+        'ArielMejiaDev\\LarapexCharts\\LarapexChartsServiceProvider' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/LarapexChartsServiceProvider.php',
+        'ArielMejiaDev\\LarapexCharts\\LineChart' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/LineChart.php',
+        'ArielMejiaDev\\LarapexCharts\\PieChart' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/PieChart.php',
+        'ArielMejiaDev\\LarapexCharts\\PolarAreaChart' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/PolarAreaChart.php',
+        'ArielMejiaDev\\LarapexCharts\\RadarChart' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/RadarChart.php',
+        'ArielMejiaDev\\LarapexCharts\\RadialChart' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/RadialChart.php',
+        'ArielMejiaDev\\LarapexCharts\\Traits\\ComplexChartDataAggregator' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/Traits/ComplexChartDataAggregator.php',
+        'ArielMejiaDev\\LarapexCharts\\Traits\\SimpleChartDataAggregator' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/Traits/SimpleChartDataAggregator.php',
+        'ArielMejiaDev\\LarapexCharts\\Traits\\WithModelStub' => __DIR__ . '/..' . '/arielmejiadev/larapex-charts/src/Traits/WithModelStub.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Barryvdh\\DomPDF\\Facade\\Pdf' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/Facade/Pdf.php',
         'Barryvdh\\DomPDF\\PDF' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/PDF.php',

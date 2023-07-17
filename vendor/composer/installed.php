@@ -3,13 +3,22 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '325694982598dccfae27bdc2fcfc1bc2341b36d8',
+        'reference' => '260b10bf855792940413fd307e87c276deac139a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'arielmejiadev/larapex-charts' => array(
+            'pretty_version' => '6.0.0',
+            'version' => '6.0.0.0',
+            'reference' => '21dc8bfd8f9577ac51e5031de643aa7130679771',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../arielmejiadev/larapex-charts',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'barryvdh/laravel-dompdf' => array(
             'pretty_version' => 'v2.0.1',
             'version' => '2.0.1.0',
@@ -409,7 +418,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '325694982598dccfae27bdc2fcfc1bc2341b36d8',
+            'reference' => '260b10bf855792940413fd307e87c276deac139a',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
