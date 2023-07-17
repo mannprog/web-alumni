@@ -49,10 +49,25 @@
 
     <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'admin|kepalasekolah')): ?>
         <li class="nav-item">
-            <a class="nav-link">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
+                aria-expanded="true" aria-controls="collapseLaporan">
                 <i class="fas fa-fw fa-file-alt"></i>
                 <span>Laporan</span>
             </a>
+            <div id="collapseLaporan" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item <?php echo e(Route::is('laporan.petugas') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('laporan.petugas')); ?>">Petugas</a>
+                    <a class="collapse-item <?php echo e(Route::is('laporan.alumni') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('laporan.alumni')); ?>">Alumni</a>
+                    <a class="collapse-item <?php echo e(Route::is('laporan.perusahaan') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('laporan.perusahaan')); ?>">Perusahaan</a>
+                    <a class="collapse-item <?php echo e(Route::is('laporan.berita') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('laporan.berita')); ?>">Berita</a>
+                    <a class="collapse-item <?php echo e(Route::is('laporan.lowongan') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('laporan.lowongan')); ?>">Lowongan</a>
+                </div>
+            </div>
         </li>
     <?php endif; ?>
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GeneralAdminController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PetugasController;
@@ -51,6 +52,17 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/dashboard/berita', BeritaController::class);
         Route::get('/dashboard/lowongan', [GeneralAdminController::class, 'allLowongan'])->name('lowongan.index');
         Route::get('/dashboard/lowongan/{lowongan}', [GeneralAdminController::class, 'detailLowongan'])->name('lowongan.detail');
+
+        Route::get('/dashboard/laporan/petugas', [LaporanController::class, 'dataPetugas'])->name('laporan.petugas');
+        Route::get('/dashboard/laporan/petugas/export', [LaporanController::class, 'exportPetugas'])->name('export.petugas');
+        Route::get('/dashboard/laporan/alumni', [LaporanController::class, 'dataAlumni'])->name('laporan.alumni');
+        Route::get('/dashboard/laporan/alumni/export', [LaporanController::class, 'exportAlumni'])->name('export.alumni');
+        Route::get('/dashboard/laporan/perusahaan', [LaporanController::class, 'dataPerusahaan'])->name('laporan.perusahaan');
+        Route::get('/dashboard/laporan/perusahaan/export', [LaporanController::class, 'exportPerusahaan'])->name('export.perusahaan');
+        Route::get('/dashboard/laporan/berita', [LaporanController::class, 'dataBerita'])->name('laporan.berita');
+        Route::get('/dashboard/laporan/berita/export', [LaporanController::class, 'exportBerita'])->name('export.berita');
+        Route::get('/dashboard/laporan/lowongan', [LaporanController::class, 'dataLowongan'])->name('laporan.lowongan');
+        Route::get('/dashboard/laporan/lowongan/export', [LaporanController::class, 'exportLowongan'])->name('export.lowongan');
 
         // Pengaturan
         Route::resource('/dashboard/setting/kategori', KategoriController::class);
