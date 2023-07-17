@@ -891,7 +891,7 @@ section {
 --------------------------------*/
 #call-to-action {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url(../img/call-to-action-bg.jpg) fixed center center;
+        url(../../../img/logo.png) fixed center center;
     background-size: cover;
     padding: 80px 0;
 }
