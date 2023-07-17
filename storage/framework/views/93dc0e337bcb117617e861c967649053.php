@@ -128,40 +128,4 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startPush('custom-scripts'); ?>
-    <script>
-        // Mendapatkan referensi ke elemen <canvas>
-        var ctx = document.getElementById('barChart').getContext('2d');
-
-        // Menyiapkan data untuk diagram batang
-        var tahunLulus = [2015, 2016, 2017, 2018, 2019, 2020]; // Contoh data tahun lulus
-        var jumlahAlumni = [50, 80, 120, 100, 90, 110]; // Contoh data jumlah alumni per tahun
-
-        // Menggambar diagram batang
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: tahunLulus,
-                datasets: [{
-                    label: 'Jumlah Alumni',
-                    data: jumlahAlumni,
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Warna latar belakang batang
-                    borderColor: 'rgba(54, 162, 235, 1)', // Warna garis batang
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true, // Mulai sumbu y dari 0
-                        ticks: {
-                            precision: 0 // Mengatur jumlah desimal pada label sumbu y
-                        }
-                    }
-                }
-            }
-        });
-    </script>
-<?php $__env->stopPush(); ?>
-
 <?php echo $__env->make('admin.layouts.app', ['title' => 'Dashboard'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\web-alumni\resources\views/admin/dashboard.blade.php ENDPATH**/ ?>

@@ -3,20 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Loker;
+use App\Models\Lamaran;
 use App\Models\UserKontak;
 use App\Models\AlumniDetail;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 use App\Models\AlumniAkademik;
 use App\Models\AlumniKeluarga;
-use App\Models\Lamaran;
-use App\Models\Loker;
+use App\Charts\AlumniLulusChart;
+use App\Charts\AlumniJurusanChart;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 
 class DashboardAlumniController extends Controller
 {
-    public function index()
+    public function index(AlumniJurusanChart $jurusanChart, AlumniLulusChart $lulusChart)
     {
         $alumni = User::whereHas('roles', function ($query) {
             $query->where('name', 'alumni');
@@ -24,7 +26,10 @@ class DashboardAlumniController extends Controller
         $loker = Loker::count();
         $lamaran = Lamaran::count();
 
-        return view('notadmin.index', compact('alumni', 'loker', 'lamaran'));
+        $ajChart = $jurusanChart->build();
+        $alChart = $lulusChart->build();
+
+        return view('notadmin.index', compact('alumni', 'loker', 'lamaran', 'ajChart', 'alChart'));
     }
 
     public function profile($id)
