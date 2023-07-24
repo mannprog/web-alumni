@@ -28,7 +28,7 @@
                                 @endif
                             </p>
                             <p class="card-text"><i class="fas fa-fw fa-map-marker-alt"></i>
-                                {{ $al->alumniDetail->alamat }}</p>
+                                {!! $al->alumniDetail->alamat !!}</p>
                             <p class="card-text"><i class="fas fa-fw fa-envelope"></i> {{ $al->email }}</p>
                         </div>
                     </div>

@@ -36,7 +36,7 @@ class AlumniDataTable extends DataTable
     {
         return $model->newQuery()
             ->role('alumni')
-            ->with(['alumniDetail', 'alumniKeluarga', 'alumniAkademik', 'roles']);
+            ->with(['alumniDetail', 'alumniKeluarga', 'alumniAkademik']);
     }
 
     /**
@@ -82,16 +82,24 @@ class AlumniDataTable extends DataTable
                 ->title('Nama Lengkap'),
             Column::make('alumni_akademik.nis')
                 ->addClass("text-sm font-weight-normal text-wrap")
+                ->searchable(false)
+                ->orderable(false)
                 ->title('NIS'),
             Column::make('alumni_akademik.nisn')
                 ->addClass("text-sm font-weight-normal text-wrap")
+                ->searchable(false)
+                ->orderable(false)
                 ->title('NISN'),
             Column::make('alumni_akademik.tahun_masuk')
                 ->addClass("text-sm font-weight-normal text-wrap")
+                ->searchable(false)
+                ->orderable(false)
                 ->orderable(false)
                 ->title('Tahun Masuk'),
             Column::make('alumni_akademik.tahun_lulus')
                 ->addClass("text-sm font-weight-normal text-wrap")
+                ->searchable(false)
+                ->orderable(false)
                 ->orderable(false)
                 ->title('Tahun Lulus'),
             Column::computed('action')

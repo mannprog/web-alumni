@@ -82,9 +82,13 @@ class PerusahaanDataTable extends DataTable
                 ->title('Nama Perusahaan'),
             Column::make('perusahaan_detail.alamat')
                 ->addClass("text-sm font-weight-normal text-wrap")
+                ->searchable(false)
+                ->orderable(false)
                 ->title('Alamat Perusahaan'),
             Column::make('user_kontak.no_handphone')
                 ->addClass("text-sm font-weight-normal text-wrap")
+                ->searchable(false)
+                ->orderable(false)
                 ->title('Nomor Perusahaan'),
             Column::computed('action')
                 ->exportable(false)

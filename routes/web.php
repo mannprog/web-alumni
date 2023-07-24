@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+Route::get('/tentang', [HomepageController::class, 'tentang'])->name('tentang');
 Route::get('/berita', [HomepageController::class, 'allBerita'])->name('all-berita');
 Route::get('/berita/{slug}', [HomepageController::class, 'detailBerita'])->name('detail-berita');
 Route::get('/lowongan', [HomepageController::class, 'allLowongan'])->name('all-lowongan');

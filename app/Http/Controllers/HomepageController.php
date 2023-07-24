@@ -20,6 +20,11 @@ class HomepageController extends Controller
         return view('home.welcome', compact('berita', 'loker', 'alumni'));
     }
 
+    public function tentang()
+    {
+        return view('home.pages.tentang');
+    }
+
     public function allBerita()
     {
         $berita = Berita::latest()->paginate(9);

@@ -9,10 +9,14 @@
                 <div class="col-lg-6 content order-lg-1 order-2">
                     <h2 class="title">Tentang Kami</h2>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                        SMK PGRI 35 SOLOKAN JERUK adalah salah satu satuan pendidikan dengan jenjang SMK/sederajat di
+                        Cibodas, Kec. Solokanjeruk, Kab. Bandung, Jawa Barat. Dalam menjalankan kegiatannya, SMK PGRI 35
+                        SOLOKAN JERUK berada di bawah naungan Kementerian Pendidikan dan Kebudayaan.
                     </p>
+
+                    <div class="brt-btn-container text-center">
+                        <a class="brt-btn align-middle" href="{{ route('tentang') }}">Lihat Selengkapnya</a>
+                    </div>
 
                     {{-- <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon"><i class="bi bi-briefcase"></i></div>
@@ -205,7 +209,7 @@
 
                         <div>
                             <i class="bi bi-telephone"></i>
-                            <p>(022) 85962018</p>
+                            <p>+62857-2055-7337</p>
                         </div>
                     </div>
 

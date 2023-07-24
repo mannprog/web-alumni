@@ -17,6 +17,16 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                 </div>
+                                @if (session()->has('loginError'))
+                                    <div class="mb-3">
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <strong>{{ session('loginError') }}</strong>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
                                 <form class="user" action="{{ route('login') }}" method="POST">
                                     @csrf
                                     <div class="form-group">
